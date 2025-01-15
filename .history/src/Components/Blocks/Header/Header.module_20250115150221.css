@@ -1,0 +1,5 @@
+.container {
+    display: flex;
+    justify-content: ;
+    outline: 3px solid red;
+}
