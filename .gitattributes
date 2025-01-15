@@ -1,0 +1,2 @@
+public/katalog_proizvedeno_v_kchr_RU.pdf filter=lfs diff=lfs merge=lfs -text
+public/katalog_proizvedeno_v_kchr_ENG.pdf filter=lfs diff=lfs merge=lfs -text
