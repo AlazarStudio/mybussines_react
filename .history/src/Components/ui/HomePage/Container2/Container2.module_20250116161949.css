@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100% ;
+    gap: 20px;
+}
+
+.containerEl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    width: 270px;
+    height: 264px;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.containerEl img{
+    width: 80px;
+    height: 148px;
+}

@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    width: 100% !important;
+    gap: 20px;
+}
+
+.containerEl {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    gap: 20px;
+}
+
+.containerEl img{
+    width: 100px;
+}

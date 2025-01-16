@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    width: 100% !important;
+}
+
+.containerEl {
+    
+}
+
+.containerEl img{
+    width: 100px;
+}

@@ -1,0 +1,144 @@
+.title {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    margin-top: -30px;
+  }
+
+
+  
+  
+  .containerEl {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 290px;
+    height: 371px;
+    font-size: 18px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Начальная тень */
+  }
+  
+  .containerEl:hover {
+    transform: translateY(-15px); /* Поднимаем элемент вверх */
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); /* Увеличиваем и затемняем тень */
+  }
+  
+  .containerEl img:first-of-type {
+    position: absolute;
+    width: 168px;
+    height: 313px;
+    left: 20px;
+  }
+
+  .containerEl img:nth-of-type(2) {
+    position: absolute;
+    width: 266px;
+    height: 348px;
+    bottom: 0;
+    right: 0;
+  }
+
+  .parallelButton {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 241px;
+    width: 260px;
+    height: 60px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: #ed5338;
+    color: #fff;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+    flex-wrap: wrap;
+    border: none;
+    cursor: pointer;
+    /* Плавный переход */
+    transition: all 0.3s ease-in-out;
+    
+    /* Фигура, в которой мы срезаем только верхний правый угол:
+       1. (0 0)      -> Левый верхний угол
+       2. (calc(100% - 30px) 0) -> смещаемся вправо на всю ширину минус 30px
+       3. (100% 30px) -> Переходим к точке в самом правом верхнем углу, 
+                         но на 30px ниже
+       4. (100% 100%) -> Правый нижний угол
+       5. (0 100%)    -> Левый нижний угол 
+    */
+    clip-path: polygon(
+      0 0, 
+      calc(100% - 30px) 0, 
+      100% 49px, 
+      100% 100%, 
+      0 100%
+    );
+  }
+  
+  .parallelButton:hover {
+    background: linear-gradient(135deg, #ff5f47 0%, #ed5338 100%);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    transform: skew(-20deg) scale(1.05);
+  }
+  
+  .containerEl span {
+    display: flex;
+    text-align: center;
+    font-size: 21px;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 30px;
+      padding: 10px;
+    }
+  
+    .container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      flex-wrap: wrap;
+      margin-top: -10px;
+      padding: 10px;
+    }
+  
+    .containerEl {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #ffffff;
+      width: 48%;
+      height: 144px;
+      font-size: 12px;
+      padding: 10px;
+      border-radius: 20px;
+    }
+  
+    .containerEl img {
+      width: 40px;
+      height: 74px;
+    }
+  
+    .containerEl span {
+      display: flex;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+  

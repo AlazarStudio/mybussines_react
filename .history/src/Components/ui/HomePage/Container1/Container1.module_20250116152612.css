@@ -1,0 +1,66 @@
+.swiper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 456px;
+  margin-top: 46px;
+
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 416px; /* или любой другой размер */
+  border-radius: 10px; /* Закругленные углы */
+  overflow: hidden; /* Если изображения выходят за пределы */
+}
+
+.slide1{
+  display: flex;
+  width: 96%;
+  gap: 58px;
+  outline: 3px solid red;
+}
+
+.slide1Left{
+  display: flex;
+  justify-content: space-between;
+  padding: 58px 0 58px 0 ;
+  flex-direction: column;
+}
+
+.slide1Left span:first-of-type{
+  font-size: 36px;
+  width: 461px;
+  height: 88px;
+  font-weight: 700;
+  line-height: 44px;
+  color: #3E3E3E;
+}
+
+.slide1Left span:nth-of-type(2){
+  font-size: 16px;
+  font-weight: 500;
+  width: 501px;
+  line-height: 22px;
+}
+
+.slide1Left button{
+  width: 177px;
+  height: 50px;
+  border-radius: 25px;
+  border: none;
+  background-color: #ED5338;
+  color: #FFFFFF;
+}
+
+.swiper-pagination {
+  position: absolute;
+  bottom: -20px; /* Сдвигаем точки ниже слайдера */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  
+}
+
