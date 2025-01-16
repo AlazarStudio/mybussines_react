@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+
+.containerEl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 290px;
+  height: 274px;
+  font-size: 18px;
+  padding: 20px;
+}
+
+.containerEl img {
+  width: 80px;
+  height: 148px;
+}
+
+.containerEl span {
+  display: flex;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 500;
+}

@@ -1,0 +1,13 @@
+.swiper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+
+}
+
+.slide{
+  outline: 3px solid red;
+}
+  

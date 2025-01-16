@@ -1,0 +1,94 @@
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: -50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  margin-top: -30px;
+}
+
+.containerEl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  width: 290px;
+  height: 274px;
+  font-size: 18px;
+  padding: 20px;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Начальная тень */
+}
+
+.containerEl:hover {
+  transform: translateY(-15px); /* Поднимаем элемент вверх */
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); /* Увеличиваем и затемняем тень */
+}
+
+.containerEl img {
+  width: 80px;
+  height: 148px;
+}
+
+.containerEl span {
+  display: flex;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+
+    .title {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 30px;
+        padding: 10px;
+      }
+      
+      .container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        padding: 10px;
+      }
+      
+      .containerEl {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #ffffff;
+        width: 48%;
+        height: 144px;
+        font-size: 12px;
+        padding: 10px;
+        border-radius: 20px;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Начальная тень */
+      }
+      
+      
+      
+      .containerEl img {
+        width: 40px;
+        height: 74px;
+      }
+      
+      .containerEl span {
+        display: flex;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+}

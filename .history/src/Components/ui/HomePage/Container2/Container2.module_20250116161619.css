@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    width: 100% !important;
+}
+
+.containerEl {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
+}
+
+.containerEl img{
+    width: 100px;
+}
