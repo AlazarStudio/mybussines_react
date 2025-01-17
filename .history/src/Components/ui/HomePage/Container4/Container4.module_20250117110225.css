@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    }
+
+.container img {
+    width: 630px;
+    height: 350px;
+}
+
+@media (max-width: 768px) {
+    .container img {
+        width: 630px;
+        height: 350px;
+    }
+}

@@ -1,0 +1,31 @@
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.containerCard{
+    display: flex;
+    flex-direction: column;
+    width: 366px;
+    height: 444px;
+    border-radius: 20px;
+}
+
+.containerCard img{
+
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+    padding: 10px;
+  }
+}
