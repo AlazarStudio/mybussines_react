@@ -24,12 +24,7 @@ function Container5({ children, ...props }) {
               <span
                 className={classes.readMore}
                 onClick={() =>
-                  navigate(
-                    `/news/${el.title
-                      .replaceAll(' ', '-')
-                      .replaceAll('«', '')
-                      .replaceAll('»', '')}`
-                  )
+                  navigate(`/news/${encodeURIComponent(el.title)}`)
                 }
               >
                 Читать дальше {'>>'}

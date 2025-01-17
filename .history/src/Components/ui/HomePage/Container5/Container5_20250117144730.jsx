@@ -21,19 +21,7 @@ function Container5({ children, ...props }) {
             </div>
             <div className={classes.containerCardBottom}>
               <span>{el.date}</span>
-              <span
-                className={classes.readMore}
-                onClick={() =>
-                  navigate(
-                    `/news/${el.title
-                      .replaceAll(' ', '-')
-                      .replaceAll('«', '')
-                      .replaceAll('»', '')}`
-                  )
-                }
-              >
-                Читать дальше {'>>'}
-              </span>
+              <span>Читать дальше {'>>'}</span>
             </div>
           </div>
         ))}
