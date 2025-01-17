@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    width: 200px;
+}
+
+.container img {
+    width: 630px;
+    height: 350px;
+}
+
+@media (max-width: 768px) {
