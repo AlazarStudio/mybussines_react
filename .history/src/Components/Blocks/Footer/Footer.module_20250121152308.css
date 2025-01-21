@@ -1,0 +1,35 @@
+.container100vh {
+  width: 100vh;
+  background-color: #10072f;
+  color: #fff;
+}
+
+.container{
+    padding
+}
+
+.containerTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.containerTop span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.containerTopNumber div:first-of-type {
+  display: flex;
+  font-size: 38px;
+  font-weight: 600;
+
+}
+
+.containerTopNumber div:nth-of-type(2){
+    text-align: end;
+}
+
+.containerTopNumber {
+  display: flex;
+  flex-direction: column;
+}
