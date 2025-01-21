@@ -1,0 +1,30 @@
+.tooltip {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 340px;
+  gap: 17px;
+  height: 147px;
+  outline: 1px solid red;
+}
+
+.tooltip img:first-of-type {
+  position: absolute;
+  width: 100%;
+  /* outline: 1px solid red; */
+}
+
+.tooltip img:nth-of-type(2) {
+  width: 51px;
+  /* height: 95px; */
+  margin-bottom: 37px;
+  outline: 1px solid red;
+  z-index: 1;
+}
+
+.tooltipInfo{
+  width: 100%;
+  z-index: 1;
+}
+
+
