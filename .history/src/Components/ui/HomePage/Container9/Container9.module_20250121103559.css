@@ -1,0 +1,13 @@
+.back {
+  width: 100vh;
+  margin: 0;
+  background-color: #e4dbd1 !important;
+}
+
+.containerTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #010101;
+  margin-left: 106px;
+  margin-top: 32px;
+}
