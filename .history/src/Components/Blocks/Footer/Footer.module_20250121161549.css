@@ -186,8 +186,7 @@ a {
     gap: 30px;
     align-items: flex-start;
     flex-direction: column;
-    padding-top: 25px;
-    padding-left: 17px;
+    padding-left: 15px;
   }
 
   .containerBottomRightTop {
