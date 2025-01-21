@@ -184,15 +184,13 @@ a {
     display: flex;
     width: 100%;
     gap: 30px;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-direction: column;
-    padding-top: 25px;
-    padding-left: 17px;
   }
 
   .containerBottomRightTop {
     display: flex;
-    
+    gap: 30px;
   }
 
   .containerBottomRightTop img {

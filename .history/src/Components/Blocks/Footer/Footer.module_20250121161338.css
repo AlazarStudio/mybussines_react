@@ -162,14 +162,13 @@ a {
 
   .containerBottomLeft {
     display: flex;
-    width: 100%;
-    padding-inline: 17px;
+    width: 100;
     gap: 15px;
     flex-direction: column;
   }
 
   .containerBottomLeft span:first-of-type {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 36px;
     cursor: auto;
@@ -184,15 +183,13 @@ a {
     display: flex;
     width: 100%;
     gap: 30px;
-    align-items: flex-start;
+    align-items: flex-end;
     flex-direction: column;
-    padding-top: 25px;
-    padding-left: 17px;
   }
 
   .containerBottomRightTop {
     display: flex;
-    
+    gap: 30px;
   }
 
   .containerBottomRightTop img {
@@ -209,7 +206,7 @@ a {
   }
 
   .containerBottomRightBottom img {
-    height: 50px;
+    height: 60px;
     cursor: pointer;
   }
 }
