@@ -1,0 +1,7 @@
+.containerTop{
+    position: relative;
+    outline: 1px solid red;
+    background-image: url('/images/supportBack.png');
+    height: 100vh;
+}
+
