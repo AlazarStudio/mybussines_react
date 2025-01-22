@@ -1,0 +1,10 @@
+.containerTop{
+    position: relative;
+    outline: 1px solid red;
+    height: 100vh;
+}
+
+.containerTop img:first-of-type{
+    position: absolute;
+    width: 100;
+}

@@ -1,0 +1,15 @@
+.containerNav {
+  font-size: 16px; /* Укажите желаемый размер шрифта */
+}
+
+.containerNav a {
+  font-size: 16px; /* Размер шрифта для ссылок */
+}
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+    padding: 10px;
+  }
+}

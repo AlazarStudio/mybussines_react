@@ -1,0 +1,24 @@
+.containerTop {
+  position: relative; /* Оставляем относительно, если требуется */
+  outline: 1px solid red; /* Для тестирования */
+  background-size: cover; /* Растягиваем фон на весь контейнер */
+  background-position: center; /* Центруем фон */
+  background-repeat: no-repeat; /* Запрещаем повтор фона */
+  width: 100%; /* На всю ширину */
+  height: 100vh; /* На всю высоту окна браузера */
+}
+
+.img
+
+.img1 {
+  position: absolute;
+  width: 2000px;
+  top: -900px;
+  left: -1300px;
+}
+
+.img2 {
+  position: fixed;
+  right: -10px;
+  top: 200px;
+}

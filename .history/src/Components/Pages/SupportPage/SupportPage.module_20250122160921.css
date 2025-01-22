@@ -1,0 +1,7 @@
+.containerTop{
+    position: relative;
+    outline: 1px solid red;
+    height: 100vh;
+}
+
+.containerTop img

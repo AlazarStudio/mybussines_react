@@ -1,0 +1,20 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
+import classes from './SupportPage.module.css';
+import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
+import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
+
+// Устанавливаем элемент для привязки модального окна
+Modal.setAppElement('#root');
+
+function SupportPage({ children, ...props }) {
+
+  return (
+    <div className={classes.line}>
+
+    </div>
+  );
+}
+
+export default SupportPage;
