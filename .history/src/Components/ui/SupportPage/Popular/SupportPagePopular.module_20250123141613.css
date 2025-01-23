@@ -1,0 +1,14 @@
+.containerPopular {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  outline: 1px solid red;
+}
+
+.containerPopular span
+
+
+.containerPopularCard{
+  display: flex;
+  flex-direction: column;
+}

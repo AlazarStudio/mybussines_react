@@ -1,0 +1,72 @@
+.back {
+  width: 100%;
+  background-color: #ffffff;
+  margin-top: 50px;
+}
+
+.containerGroup {
+  width: 100%;
+  padding: 50px;
+}
+
+.containerGroup input {
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 30px;
+  border: 1px solid #8692c3;
+  color: #8692c3;
+  outline: none;
+}
+
+.containerGroupContent {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.containerGroupContentCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  width: 376px;
+  height: 460px;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 2px solid #8692c3;
+}
+
+.containerGroupContentCard img {
+  width: 100%;
+  height: 276px;
+}
+
+.containerGroupContentCard span:first-of-type {
+  width: 100%;
+  height: 84px;
+  font-size: 22px;
+  font-weight: 600;
+  overflow: hidden; /* Скрыть переполнение */
+  white-space: nowrap; /* Запретить перенос строк */
+  text-overflow: ellipsis; /* Добавить многоточие */
+}
+
+
+.containerGroupContentCard span:nth-of-type(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 167px;
+  height: 50px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 30px;
+  background-color: #3D2A92;
+}
