@@ -1,0 +1,28 @@
+.containerPopular {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 40px;
+  outline: 1px solid red;
+}
+
+.containerPopularTitle {
+  display: flex;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.containerPopularContent {
+  display: flex;
+  height: 100%;
+  gap: 37px;
+}
+
+.containerPopularContentCard {
+  display: flex;
+  flex-direction: column;
+  width: 353px;
+  height: 243px;
+  outline: 1px solid red;
+}

@@ -1,0 +1,11 @@
+.containerPopular {
+  width: 100%;
+  display: flex;
+  outline: 1px solid red;
+}
+
+
+.containerPopularCard{
+  display: flex;
+  flex-direction: column;
+}

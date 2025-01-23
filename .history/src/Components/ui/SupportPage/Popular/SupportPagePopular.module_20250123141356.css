@@ -1,0 +1,5 @@
+.containerPopular {
+  width: 100%;
+  display: flex;
+  outline: 1px solid red;
+}
