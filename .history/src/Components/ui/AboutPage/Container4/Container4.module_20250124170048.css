@@ -1,0 +1,19 @@
+.container4 {
+  display: flex;
+  width: 100%;
+  gap: 55px;
+}
+
+.container4 img {
+  width: 526px;
+  height: 350px;
+  border-radius: 30px;
+}
+
+.container4Text{
+  width: 100%;
+  
+}
+
+@media (max-width: 768px) {
+}
