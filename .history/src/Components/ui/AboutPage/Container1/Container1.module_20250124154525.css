@@ -1,0 +1,9 @@
+
+.container1{
+  display: flex;
+  width: 100%;
+  background-color: ;
+}
+
+@media (max-width: 768px) {
+}

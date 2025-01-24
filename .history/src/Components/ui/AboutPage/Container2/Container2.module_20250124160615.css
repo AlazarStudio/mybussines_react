@@ -1,0 +1,9 @@
+
+.container2{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: ;
+}
+
+@media (max-width: 768px) {
+}

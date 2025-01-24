@@ -1,0 +1,42 @@
+.container2 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 30px 0 30px 0;
+  flex-wrap: wrap;
+  align-items: center;
+  color: black;
+}
+
+.container2Title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  outline: 1px solid red;
+}
+
+.container2Title span {
+  display: flex;
+  text-align: center;
+  width: 70%;
+  font-size: 32px;
+  font-weight: 600;
+  outline: 1px solid red;
+}
+
+.container2Bottom{
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 55px;
+  outline: 1px solid red;
+}
+
+.container2BottomCard{
+  width: 48%;
+  outline: 1px solid red;
+}
+
+@media (max-width: 768px) {
+}

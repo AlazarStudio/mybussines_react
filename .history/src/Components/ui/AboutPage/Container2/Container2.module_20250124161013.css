@@ -1,0 +1,28 @@
+.container2 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 30px 0 30px 0;
+  flex-wrap: wrap;
+  align-items: center;
+  color: black;
+}
+
+.container2Title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  align-items: center;
+  outline: 1px solid red;
+}
+
+.container2Title span{
+ text-align: center;
+ width: 80%;
+  font-size: 32px;
+  font-weight: 600;
+  outline: 1px solid red;
+}
+
+@media (max-width: 768px) {
+}

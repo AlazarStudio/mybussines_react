@@ -1,0 +1,25 @@
+.container3{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  background-color: #FFFF;
+  border-radius: 30px;
+}
+
+.container3 img:first-of-type{
+  width: 373px;
+  height: 289px;
+  margin-left: 137px;
+}
+
+.container3 img:nth-of-type(2){
+  width: 626px;
+  height: 417px;
+}
+
+@media (max-width: 768px) {
+
+  
+
+}
