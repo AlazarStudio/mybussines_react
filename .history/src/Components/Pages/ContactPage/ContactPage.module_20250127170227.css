@@ -1,0 +1,107 @@
+.containerPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  margin: 50px 130px 50px 130px;
+  border-radius: 30px;
+  padding: 40px;
+}
+
+.containerTitle {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.containerInfo {
+  display: flex;
+  gap: 32px;
+  width: 100%;
+}
+
+.containerInfoEl {
+  display: flex;
+  align-items: center;
+  padding: 21px;
+  height: 90px;
+  gap: 14px;
+  border: 1px solid #ef4136;
+  border-radius: 30px;
+}
+
+.containerInfoEl img {
+  height: 41px;
+}
+
+.containerInfoElData {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.containerInfoElData span:first-of-type {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.containerInfoElData span:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: 500;
+  color: #787878;
+}
+
+.containerWork {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+.containerShedule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 357px;
+  height: 273px;
+  padding: 30px;
+  border: 1px solid #ef4136;
+  border-radius: 30px;
+}
+
+.containerShedule span:nth-of-type(1) {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.containerShedule span:nth-of-type(2) {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ed5338;
+}
+
+.containerShedule span:nth-of-type(3) {
+  font-size: 36px;
+  font-weight: 700;
+  color: #ed5338;
+}
+
+.containerShedule span:nth-of-type(4) {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.containerShedule span:nth-of-type(1) {
+  font-size: ;
+  font-weight: ;
+  color: ;
+}
