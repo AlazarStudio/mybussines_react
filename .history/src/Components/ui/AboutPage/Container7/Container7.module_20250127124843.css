@@ -1,0 +1,13 @@
+.container7 {
+  width: 100%;
+}
+
+.container7Title{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  
+}
+
+@media (max-width: 768px) {
+}

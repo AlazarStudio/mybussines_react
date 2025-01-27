@@ -1,0 +1,34 @@
+.container7 {
+  width: 100%;
+}
+
+.container7Title{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.container7Title span{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+  width: 100%;
+  font-size: 32px;
+  font-weight: 600;
+  outline: 1px solid red;
+}
+
+.container7Card{
+  display: flex;
+  flex-direction: column;
+  width: ;
+}
+
+
+
+@media (max-width: 768px) {
+}
