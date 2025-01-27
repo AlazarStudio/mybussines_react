@@ -1,0 +1,14 @@
+.container5 {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  gap: 31px;
+  align-items: center;
+  width: 100%;
+  height: 296px;
+  background-color: #fff;
+  border-radius: 30px;
+}
+
+@media (max-width: 768px) {
+}
