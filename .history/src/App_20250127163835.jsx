@@ -8,7 +8,6 @@ import Non_Found_Page from './Components/Pages/Non_Found_Page';
 import SupportPage from './Components/Pages/SupportPage/SupportPage';
 import ServicePage from './Components/Pages/ServicePage/ServicePage';
 import AboutPage from './Components/Pages/AboutPage/AboutPage';
-import ContactPage from './Components/Pages/ContactPage/ContactPage';
 
 function App() {
   return (
@@ -19,7 +18,7 @@ function App() {
         <Route path="news/:title" element={<OneNewsPage />} />
         <Route path="service" element={<ServicePage />} />
         <Route path="about" element={<AboutPage />} />
-        <Route path="contacts" element={<ContactPage />} />
+        <Route path="contacts" element={<AboutPage />} />
         <Route path="*" element={<Non_Found_Page />} />
       </Route>
       <Route path="supports" element={<SupportPage />} />
