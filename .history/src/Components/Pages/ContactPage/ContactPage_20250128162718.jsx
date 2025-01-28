@@ -3,7 +3,6 @@ import classes from './ContactPage.module.css';
 
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
-import Bid from '../../ui/Bid/Bid';
 
 function ContactPage({ children, ...props }) {
   return (
@@ -71,7 +70,6 @@ function ContactPage({ children, ...props }) {
             fontSize: '12px',
             position: 'absolute',
             top: '14px',
-            outline: 'none',
           }}
         >
           Яндекс Карты — транспорт, навигация, поиск мест
@@ -88,10 +86,7 @@ function ContactPage({ children, ...props }) {
 
       <CenterBlock>
         <WidthBlock>
-          <div className={classes.bidTitle}>
-            Если у Вас остались вопросы, оставьте заявку, мы свяжемся с Вами!
-          </div>
-          <Bid />
+          <div className={}
         </WidthBlock>
       </CenterBlock>
     </>

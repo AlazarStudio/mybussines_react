@@ -89,7 +89,7 @@ function ContactPage({ children, ...props }) {
       <CenterBlock>
         <WidthBlock>
           <div className={classes.bidTitle}>
-            Если у Вас остались вопросы, оставьте заявку, мы свяжемся с Вами!
+            Если у Вас остались вопросы, оставьте заявку, мы свяжемся с вами
           </div>
           <Bid />
         </WidthBlock>

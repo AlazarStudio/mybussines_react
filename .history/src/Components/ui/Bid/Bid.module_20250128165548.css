@@ -1,0 +1,17 @@
+.all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container{
+  display: flex;
+  
+  width: 724px;
+  height: 795px;
+  background-color: #fff;
+  border-radius: 30px;
+
+}
+
