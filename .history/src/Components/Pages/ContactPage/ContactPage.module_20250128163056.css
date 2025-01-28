@@ -108,13 +108,4 @@
   color: #ed5338;
 }
 
-.bidTitle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  font-size: 20px;
-  font-weight: 600;
-  margin-top: 50px;
-  outline: 1px solid red;
-}
+

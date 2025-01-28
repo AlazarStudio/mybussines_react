@@ -71,7 +71,7 @@ function ContactPage({ children, ...props }) {
             fontSize: '12px',
             position: 'absolute',
             top: '14px',
-            outline: 'none',
+            outline: 'none'
           }}
         >
           Яндекс Карты — транспорт, навигация, поиск мест
@@ -88,9 +88,6 @@ function ContactPage({ children, ...props }) {
 
       <CenterBlock>
         <WidthBlock>
-          <div className={classes.bidTitle}>
-            Если у Вас остались вопросы, оставьте заявку, мы свяжемся с Вами!
-          </div>
           <Bid />
         </WidthBlock>
       </CenterBlock>
