@@ -73,7 +73,7 @@ function Container1({ children, ...props }) {
                 <span>
                 Центр инноваций социальной сферы (ЦИСС) – структурноеподразделение Центра «Мой бизнес» в Карачаево-Черкесии. ЦИССявляется центром поддержки для социально ориентированныхпредпринимателей всей республики.
                 </span>
-                <button onClick={() => navigate('/center_innovacionnoy_soc_sfery')}>Узнать больше</button>
+                <button onClick={() => navigate('/')}>Узнать больше</button>
               </div>
             </div>
           </SwiperSlide>
@@ -85,7 +85,7 @@ function Container1({ children, ...props }) {
                 <span>
                 Проект направлен на создание в г. Черкесск и в г. Карачаевске Центра молодежного инновационного творчества, как открытой площадки для повышения интереса молодежи (школьников и студентов) к техническому творчеству, инновационной инженерной и научной деятельности.
                 </span>
-                <button onClick={() => navigate('/center_molod_innovac_texnologyi')}>Узнать больше</button>
+                <button onClick={() => navigate('/')}>Узнать больше</button>
               </div>
             </div>
           </SwiperSlide>
