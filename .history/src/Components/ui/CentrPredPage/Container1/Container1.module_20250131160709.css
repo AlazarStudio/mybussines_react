@@ -155,7 +155,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     width: 100%;
     gap: 27px;
     background-color: #fff;
@@ -169,7 +168,6 @@
 
   .containerRight span:nth-of-type(1) {
     width: 100%;
-    text-align: center;
     font-size: 22px;
     font-weight: 700;
     color: black;
@@ -177,8 +175,7 @@
 
   .containerRight span:nth-of-type(2) {
     width: 100%;
-    text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
   }
 
