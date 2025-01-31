@@ -9,8 +9,6 @@ import SupportPage from './Components/Pages/SupportPage/SupportPage';
 import ServicePage from './Components/Pages/ServicePage/ServicePage';
 import AboutPage from './Components/Pages/AboutPage/AboutPage';
 import ContactPage from './Components/Pages/ContactPage/ContactPage';
-import BasePage from './Components/Pages/BasePage/BasePage';
-import ShowCasesPage from './Components/Pages/ShowCasesPage/ShowCasesPage';
 
 function App() {
   return (
@@ -22,8 +20,7 @@ function App() {
         <Route path="service" element={<ServicePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="contacts" element={<ContactPage />} />
-        <Route path="base_knowledge" element={<BasePage />} />
-        <Route path="showcases" element={<ShowCasesPage />} />
+        <Route path="contacts" element={<ContactPage />} />
         <Route path="*" element={<Non_Found_Page />} />
       </Route>
       <Route path="supports" element={<SupportPage />} />
