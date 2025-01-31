@@ -11,7 +11,6 @@ import AboutPage from './Components/Pages/AboutPage/AboutPage';
 import ContactPage from './Components/Pages/ContactPage/ContactPage';
 import BasePage from './Components/Pages/BasePage/BasePage';
 import ShowCasesPage from './Components/Pages/ShowCasesPage/ShowCasesPage';
-import CentrPredPage from './Components/Pages/CentrPredPage/CentrPredPage';
 
 function App() {
   return (

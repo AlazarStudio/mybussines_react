@@ -11,7 +11,6 @@ import AboutPage from './Components/Pages/AboutPage/AboutPage';
 import ContactPage from './Components/Pages/ContactPage/ContactPage';
 import BasePage from './Components/Pages/BasePage/BasePage';
 import ShowCasesPage from './Components/Pages/ShowCasesPage/ShowCasesPage';
-import CentrPredPage from './Components/Pages/CentrPredPage/CentrPredPage';
 
 function App() {
   return (
@@ -25,7 +24,7 @@ function App() {
         <Route path="contacts" element={<ContactPage />} />
         <Route path="base_knowledge" element={<BasePage />} />
         <Route path="showcases" element={<ShowCasesPage />} />
-        <Route path="centr_podderzhki_predprinimatelstva" element={<CentrPredPage />} />
+        <Route path="centr_podderzhki_predprinimatelstva" element={<Cent />} />
         <Route path="*" element={<Non_Found_Page />} />
       </Route>
       <Route path="supports" element={<SupportPage />} />
