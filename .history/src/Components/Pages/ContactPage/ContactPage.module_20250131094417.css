@@ -135,19 +135,19 @@
     width: 95%;
     background-color: #fff;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 10px;
   }
   
   .containerTitle {
-    font-size: 24px;
+    font-size: 36px;
     font-weight: 700;
   }
   
   .containerInfo {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 32px;
     width: 100%;
     margin-top: 40px;
   }
@@ -236,7 +236,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
     width: 100%;
     font-size: 20px;
     font-weight: 600;

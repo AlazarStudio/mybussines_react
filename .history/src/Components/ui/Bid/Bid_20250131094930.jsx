@@ -88,7 +88,7 @@ export default function Bid() {
                 </label>
               </div>
               <button type="submit" className={classes.submitButton}>
-                Отправить заявку
+                Отправить 
               </button>
             </div>
           </div>

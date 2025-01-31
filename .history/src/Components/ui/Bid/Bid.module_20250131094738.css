@@ -173,10 +173,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: flex-start;
+    align-items: s;
     justify-content: space-between;
     /* outline: 1px solid red; */
-    gap: 10px;
   }
   
   .containerOrgEl {
