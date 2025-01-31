@@ -176,7 +176,6 @@
     align-items: flex-start;
     justify-content: space-between;
     /* outline: 1px solid red; */
-    gap: 10px;
   }
   
   .containerOrgEl {

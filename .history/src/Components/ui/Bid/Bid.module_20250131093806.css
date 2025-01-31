@@ -1,0 +1,111 @@
+.all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 724px;
+  height: 795px;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 50px;
+}
+
+.containerTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.containerInput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.containerInput input {
+  border: none;
+  border-bottom: 1px solid #787878;
+  font-size: 16px;
+  padding: 10px;
+  outline: none;
+}
+
+.containerForm {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: #787878;
+}
+
+.containerOrg {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  /* outline: 1px solid red; */
+}
+
+.containerOrgEl {
+  display: flex;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  gap: 8px; /* Задаёт расстояние между чекбоксом и текстом */
+}
+
+.containerInn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #787878;
+  outline: none;
+}
+
+.commentInput {
+  resize: none; /* Отключает возможность изменения размера */
+  width: 100%; /* Задаёт ширину на весь контейнер */
+  height: 112px; /* Определяет фиксированную высоту */
+  padding: 10px;
+  border: 1px solid #ccc;
+  color: #787878;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box; /* Учитывает padding в общей ширине/высоте */
+}
+
+.containerCheck {
+  display: flex;
+  align-items: start;
+  width: 100%;
+  gap: 10px;
+  /* outline: 1px solid red; */
+}
+
+.containerCheck input {
+  margin-top: 5px;
+}
+
+.containerCheck span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.submitButton{
+  width: 214px;
+  height: 50px;
+  background-color: #ED5338;
+  color: ;
+}
