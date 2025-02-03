@@ -1,0 +1,11 @@
+.container{
+  width: 100%;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+
+
+@media (max-width: 768px) {
+  
+}
