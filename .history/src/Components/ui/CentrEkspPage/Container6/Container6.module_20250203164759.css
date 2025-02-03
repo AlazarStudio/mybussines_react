@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  width: 100%;
+  padding: 35px;
+  gap: 40px;
+}
+
+.containerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+  width: 70%;
+}
+
+.containerLeft span:nth-of-type(1) {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.containerLeft span:nth-of-type(2) {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.containerRight{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    justify-content: space-between;
+}
+
+.containerRight span{
+    gap: ;
+}
+
+.containerRight span:nth-of-type(1){
+font-size: 14px;
+font-weight: 600;
+}
+
+.containerRight span:nth-of-type(2){
+    font-size: ;
+}
+
+.containerRight span:nth-of-type(){
+    
+}
+
+.containerRight span:nth-of-type(){
+    
+}
+
+.containerRight span:nth-of-type(){
+    
+}

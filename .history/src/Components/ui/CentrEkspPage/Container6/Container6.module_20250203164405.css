@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  width: 100%;
+  padding: 35px;
+}
+
+.containerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 39px;
+}
+
+.containerLeft span:nth-of-type(1){
+font
+}
+
+.containerLeft span:nth-of-type(2){
+    
+}
