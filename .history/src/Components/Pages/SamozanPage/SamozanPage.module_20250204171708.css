@@ -1,0 +1,51 @@
+.containerTop {
+  width: 100%;
+  height: 640px;
+  background-image: url('/images/samozan1.png');
+  background-size: cover; /* Растягивает изображение на всю ширину */
+  background-position: center; /* Центрирует изображение */
+  background-repeat: no-repeat; /* Отключает повторение */
+}
+
+.container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 640px;
+  outline: 1px solid red;
+}
+
+.containerText {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerText span:nth-of-type(1) {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  width: 339px;
+}
+
+.containerText span:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: 500;
+  width: 249px;
+}
+
+.containerText button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 296px;
+    height: 50px;
+border-radius: ;
+}
+
+.container img {
+  position: absolute;
+  width: 780px !important;
+  height: 370px;
+  bottom: 0;
+  right: 0;
+}

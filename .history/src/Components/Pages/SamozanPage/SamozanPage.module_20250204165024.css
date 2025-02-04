@@ -1,0 +1,16 @@
+.containerTop {
+  width: 100%;
+  height: 640px;
+  background-image: url('/images/samozan1.png');
+  background-size: cover; /* Растягивает изображение на всю ширину */
+  background-position: center; /* Центрирует изображение */
+  background-repeat: no-repeat; /* Отключает повторение */
+}
+ё .containerTopText {
+  display: flex;
+  z-index: 1;
+}
+
+.containerTopText img {
+  width: ;
+}

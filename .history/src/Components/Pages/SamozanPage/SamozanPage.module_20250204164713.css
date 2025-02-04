@@ -1,0 +1,19 @@
+.containerTop{
+    width: 100%;
+    height: 640px;
+    position: relative;
+}
+
+.img1{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.containerTopText{
+    display: flex;
+    z-index: 1;
+    
+}
