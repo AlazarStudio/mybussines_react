@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.containerTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 40px;
+}
+
+.containerBlock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 18px;
+}
+
+.containerCard {
+  display: flex;
+  width: 366px;
+  height: 251px;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 31px 40px 31px 40px;
+}
+
+.containerCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.containerCardBottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 0;
+}
+
+@media (max-width: 768px) {
+}

@@ -1,0 +1,19 @@
+
+
+@media (max-width: 768px) {
+  .title {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin:29px
+  }
+  
+  .title span {
+    background-color: #F15043;
+    padding: 10px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
