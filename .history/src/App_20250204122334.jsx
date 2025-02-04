@@ -39,10 +39,7 @@ function App() {
           path="center_innovacionnoy_soc_sfery"
           element={<CentrInnovPage />}
         />
-        <Route
-          path="center_molod_innovac_texnologyi"
-          element={<CentrTehPage />}
-        />
+        <Route path="about" element={<CentrTehPage />} />
         <Route path="*" element={<Non_Found_Page />} />
       </Route>
       <Route path="supports" element={<SupportPage />} />

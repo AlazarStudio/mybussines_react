@@ -15,7 +15,6 @@ import CentrPredPage from './Components/Pages/CentrPredPage/CentrPredPage';
 import CentrEkspPage from './Components/Pages/CentrEkspPage/CentrEkspPage';
 import CentrHozPage from './Components/Pages/CentrHozPage/CentrHozPage';
 import CentrInnovPage from './Components/Pages/CentrInnovPage/CentrInnovPage';
-import CentrTehPage from './Components/Pages/CentrTehPage/CentrTehPage';
 
 function App() {
   return (
@@ -39,10 +38,7 @@ function App() {
           path="center_innovacionnoy_soc_sfery"
           element={<CentrInnovPage />}
         />
-        <Route
-          path="center_molod_innovac_texnologyi"
-          element={<CentrTehPage />}
-        />
+        <Route path="about" element={<Centr />} />
         <Route path="*" element={<Non_Found_Page />} />
       </Route>
       <Route path="supports" element={<SupportPage />} />
