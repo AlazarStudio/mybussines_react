@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  margin-top: 36px;
+  gap: 40px;
+}
+
+.containerTitle {
+  padding: 0 123px 0 123px;
+}
+
+.containerTitle span {
+  display: flex;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  /* outline: 1px solid red; */
+  /* justify-content: center; */
+}
+
+.containerBlock {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.containerBlockEl{
+  width: 48;
+}
+
+@media (max-width: 768px) {
+}
