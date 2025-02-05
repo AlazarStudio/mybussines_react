@@ -55,13 +55,13 @@ a {
 }
 
 .containerBottomLeft a:first-of-type {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
-  /* line-height: 36px; */
-  cursor: pointer;
+  line-height: 36px;
+  cursor: auto;
 }
 
-.containerBottomLeft a {
+.containerBottomLeft span {
   font-size: 14px;
   cursor: pointer;
 }

@@ -20,7 +20,6 @@ import SamozanPage from './Components/Pages/SamozanPage/SamozanPage';
 import PlanBusPage from './Components/Pages/PlanBusPage/PlanBusPage';
 import PredprinPage from './Components/Pages/PredprinPage/PredprinPage';
 import SocPredPage from './Components/Pages/SocPredPage/SocPredPage';
-import AdminPage from './Components/Pages/AdminPage/AdminPage';
 
 function App() {
   return (

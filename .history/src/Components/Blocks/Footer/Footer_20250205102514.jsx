@@ -36,7 +36,7 @@ function Footer({ children, ...props }) {
                     Положение об обработке Персональных данных
                   </a>
                   <a
-                    href="/Pol'zovatel'skoe_soglashenie_dlya_posetitelj_sajta.pdf"
+                    href="/pologenie_ob_obrabotke_pd.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
