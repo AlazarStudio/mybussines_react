@@ -72,7 +72,7 @@ const AdminPage = () => (
     />
         <Resource
       name="centers"
-      options={{ label: "Центры" }}
+      options={{ label: "W" }}
       list={CenterList}
       create={CenterCreate}
       edit={CenterEdit}

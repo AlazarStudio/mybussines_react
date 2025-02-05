@@ -35,20 +35,10 @@ function Footer({ children, ...props }) {
                   >
                     Положение об обработке Персональных данных
                   </a>
-                  <a
-                    href="/Pol'zovatel'skoe_soglashenie_dlya_posetitelj_sajta.pdf"
+                  <a  href="/pologenie_ob_obrabotke_pd.pdf"
                     target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Пользовательское соглашение для посетителей сайта
-                  </a>
-                  <a
-                    href="/polojenie_o_okazanii_platnyh_uslug.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Положение об оказании платных услуг
-                  </a>
+                    rel="noopener noreferrer">Пользовательское соглашение для посетителей сайта</a>
+                  <a>Положение об оказании платных услуг</a>
                 </div>
                 <div className={classes.containerBottomRight}>
                   <div className={classes.containerBottomRightTop}>

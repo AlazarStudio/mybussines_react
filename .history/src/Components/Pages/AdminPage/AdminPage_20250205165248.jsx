@@ -50,7 +50,6 @@ import {
   TagsSupportEdit,
   TagsSupportList,
 } from './ProductsComponent/TagsSupportComponent';
-import { CenterCreate, CenterEdit, CenterList } from './ProductsComponent/CenterComponent';
 
 const dataProvider = simpleRestProvider(`${serverConfig}`, fetchJsonWithToken); // Ваш API
 const i18nProvider = polyglotI18nProvider(() => russianMessages, 'ru');
@@ -71,11 +70,11 @@ const AdminPage = () => (
       edit={FormsEdit}
     />
         <Resource
-      name="centers"
-      options={{ label: "Центры" }}
-      list={CenterList}
-      create={CenterCreate}
-      edit={CenterEdit}
+      name="forms"
+      options={{ label: "Правовая форма" }}
+      list={FormsList}
+      create={FormsCreate}
+      edit={FormsEdit}
     />
     <Resource
       name="typeSupports"

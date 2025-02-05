@@ -45,12 +45,7 @@ import {
   TypeSupportEdit,
   TypeSupportList,
 } from './ProductsComponent/TypeSupportComponent';
-import {
-  TagsSupportCreate,
-  TagsSupportEdit,
-  TagsSupportList,
-} from './ProductsComponent/TagsSupportComponent';
-import { CenterCreate, CenterEdit, CenterList } from './ProductsComponent/CenterComponent';
+import { TagsSupportCreate, TagsSupportEdit, TagsSupportList } from './ProductsComponent/TagsSupportComponent';
 
 const dataProvider = simpleRestProvider(`${serverConfig}`, fetchJsonWithToken); // Ваш API
 const i18nProvider = polyglotI18nProvider(() => russianMessages, 'ru');
@@ -65,40 +60,25 @@ const AdminPage = () => (
   >
     <Resource
       name="forms"
-      options={{ label: "Правовая форма" }}
       list={FormsList}
       create={FormsCreate}
       edit={FormsEdit}
     />
-        <Resource
-      name="centers"
-      options={{ label: "Центры" }}
-      list={CenterList}
-      create={CenterCreate}
-      edit={CenterEdit}
-    />
     <Resource
       name="typeSupports"
-      options={{ label: 'Типы поддержки' }}
       list={TypeSupportList}
       create={TypeSupportCreate}
       edit={TypeSupportEdit}
     />
 
     <Resource
-      options={{ label: 'Теги поддержки' }}
+      options={{ label: "Теги поддержки" }}
       name="tagsSupports"
       list={TagsSupportList}
       create={TagsSupportCreate}
       edit={TagsSupportEdit}
     />
-    <Resource
-      name="News"
-      options={{ label: 'Новости' }}
-      list={NewsList}
-      create={NewsCreate}
-      edit={NewsEdit}
-    />
+    <Resource name="News" list={NewsList} create={NewsCreate} edit={NewsEdit} />
   </Admin>
 );
 
