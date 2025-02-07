@@ -1,0 +1,25 @@
+.title {
+  display: flex;
+  padding-left: 40px;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+  margin-top: 140px;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.containerEl{
+  display: flex;
+  flex-direction: column;
+  padding: ;
+  width: 48%;
+}
+
+@media (max-width: 768px) {
+}

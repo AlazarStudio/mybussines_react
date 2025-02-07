@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 137px;
+  z-index: 111;
+  padding: 0 35px;
+  gap: 140px;
+}
+
+.containerEl {
+  display: flex;
+  height: 475px;
+  width: 100%;
+  gap: 110px;
+  color: #fff;
+}
+
+.containerElLogo {
+  display: flex;
+  width: 626px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.containerElText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.containerElText span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.containerElText span img {
+  width: 10px;
+  height: 10px;
+}
+
+.containerElText span:nth-of-type(1) {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.containerElText button{
+  width: 324px;
+  height: 50px;
+  border-radius: ;
+}
+
+@media (max-width: 768px) {
+}

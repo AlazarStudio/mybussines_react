@@ -1,0 +1,12 @@
+.title{
+  display: flex;
+  width: 100%;
+text-align: center;
+align-items: center;
+justify-content: center;
+color: #fff;
+}
+
+@media (max-width: 768px) {
+ 
+}
