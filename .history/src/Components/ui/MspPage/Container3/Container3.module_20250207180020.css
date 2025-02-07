@@ -1,0 +1,15 @@
+.title{
+  display: flex;
+  padding-left: 40px;
+  color: #fff;
+  font-size: ;
+}
+
+.container{
+  display: flex;
+}
+
+
+@media (max-width: 768px) {
+
+}
