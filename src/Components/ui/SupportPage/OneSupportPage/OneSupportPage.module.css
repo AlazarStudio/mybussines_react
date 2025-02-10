@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #ffff;
+  margin-top: 50px;
+  padding: 40px;
+  margin-bottom: 40px;
+  border-radius: 30px;
+}
+
+.containerNav a {
+  font-size: 16px;
+  color: red;
+}
+
+.containerNav span {
+  font-size: 16px;
+  color: black;
+}
+
+.containerNews {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  text-align: justify;
+  width: 100%;
+  margin-top: 40px;
+  /* outline: 1px solid red; */
+}
+
+.containerNews span:first-of-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.articleText {
+  padding: 90px 30px;
+  font-size: 20px;
+  line-height: 30px;
+  white-space: pre-wrap;
+  border: 1px solid #777;
+  border-radius: 20px;
+}
+
+/* .containerNews p {
+  display: flex;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
+} */
+
+.containerNews img {
+  margin-top: 50px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    background-color: #ffff;
+    margin: 11px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .containerNav {
+    padding: 5px;
+  }
+
+  .containerNav a {
+    font-size: 14px;
+    color: red;
+  }
+
+  .containerNav span {
+    font-size: 14px;
+    color: black;
+  }
+
+  .containerNews {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: justify;
+    width: 100%;
+    margin-top: 20px;
+    /* outline: 1px solid red; */
+  }
+
+  .containerNews span:first-of-type {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .containerNews p {
+    display: flex;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .containerNews img {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    width: 100%;
+  }
+}

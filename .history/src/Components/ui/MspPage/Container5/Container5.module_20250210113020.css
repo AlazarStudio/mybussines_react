@@ -1,0 +1,31 @@
+.title {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.containerEl {
+  display: flex;
+  fd
+  align-items: center;
+  width: 32%;
+  color: #fff;
+  height: 218px;
+  background: rgba(255, 255, 255, 0.2); /* Полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Размытие */
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+}

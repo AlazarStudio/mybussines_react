@@ -1,0 +1,21 @@
+.title {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  
+}
+
+.containerEl {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+}
