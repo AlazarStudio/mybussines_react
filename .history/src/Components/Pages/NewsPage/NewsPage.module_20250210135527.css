@@ -1,0 +1,130 @@
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 30px;
+}
+
+.search input {
+  padding: 5px 15px 5px 25px;
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  border: 1px solid #787878;
+  background-color: inherit;
+  outline: none;
+  color: black;
+  font-size: 16px;
+}
+
+.search {
+  font-size: 16px;
+  font-weight: 600;
+  color: #787878;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 39px;
+  /* outline: 1px solid red; */
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-bottom: 30px;
+}
+
+.containerCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 390px;
+  height: 474px;
+  border-radius: 20px;
+  background-color: #fefefe;
+  /* outline: 1px solid red; */
+}
+
+.containerCardImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 249px !important;
+
+  background-color: #fff;
+}
+
+.containerCardImg img {
+  width: 100%;
+  height: 100% !important;
+  /* object-fit: cover; */
+}
+
+.containerCardCenter {
+  display: flex;
+  margin-top: -1px;
+  /* outline: 1px solid red; */
+}
+
+.containerCardCenter img {
+  width: 36px;
+  height: 123px;
+}
+
+.containerCardCenter span {
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 12px;
+  padding-top: 12px;
+  padding-right: 12px;
+  height: 160px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  color: black;
+  margin-right: 10px;
+  /* outline: 1px solid red; */
+}
+
+.containerCardBottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 43px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10px;
+  /* outline: 1px solid red; */
+}
+
+.containerCardBottom span:first-of-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #787878;
+  width: 104px;
+  height: 30px;
+  background-color: #eaeaea;
+  border-radius: 20px;
+}
+
+.containerCardBottom span:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ed5338;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+    padding: 10px;
+  }
+}
