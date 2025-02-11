@@ -1,0 +1,95 @@
+.swiper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 416px; /* или любой другой размер */
+  border-radius: 10px; /* Закругленные углы */
+  overflow: hidden; /* Если изображения выходят за пределы */
+}
+
+.slide img{
+  object-fit: contain;
+}
+
+.slide1 {
+  display: flex;
+  width: 96%;
+  height: 416px;
+  gap: 58px;
+  border-radius: 30px;
+  background-color: #fefefe;
+}
+
+.slide1 img {
+  display: flex;
+  width: 100%;
+  /* height: 100%; */
+  border-radius: 30px;
+  object-fit: contain;
+}
+
+.swiper-pagination {
+  position: absolute;
+  bottom: -10px; /* Сдвигаем точки ниже слайдера */
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .swiper {
+    display: flex;
+    position: relative;
+    width: 98%;
+    height: 150px;
+  }
+
+  .slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px; /* Закругленные углы */
+    overflow: hidden; /* Если изображения выходят за пределы */
+  }
+
+  .slide1 {
+    display: flex;
+    width: 96%;
+    height: 100%;
+    /* outline: 1px solid red; */
+    border-radius: 30px;
+    background-color: #fefefe;
+  }
+
+  .slide1 img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+
+  }
+  
+
+  /*   
+    .slide1 img {
+      display: none;
+    } */
+
+  .swiper-pagination {
+    position: absolute;
+    bottom: -20px; /* Сдвигаем точки ниже слайдера */
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+}
