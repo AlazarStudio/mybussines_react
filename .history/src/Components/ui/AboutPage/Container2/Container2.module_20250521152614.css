@@ -1,0 +1,127 @@
+.container2 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 30px 0 30px 0;
+  flex-wrap: wrap;
+  align-items: center;
+  color: black;
+}
+
+.container2Title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  /* outline: 1px solid red; */
+}
+
+.container2Title span {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 24px;
+  font-weight: 600;
+  /* outline: 1px solid red; */
+}
+
+.container2Bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 55px;
+  gap: 80px;
+  /* outline: 1px solid red; */
+}
+
+.container2BottomCard {
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  width: 45%;
+  gap: 24px;
+}
+
+.container2BottomCard span:first-of-type {
+  font-size: 64px;
+  font-weight: 700;
+  color: #ed5338;
+  /* outline: 1px solid red; */
+}
+
+.container2BottomCard span:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .container2 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0 30px 0;
+    flex-wrap: wrap;
+    color: black;
+  }
+
+  .container2Title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    /* outline: 1px solid red; */
+  }
+
+  .container2Title span {
+    display: flex;
+    text-align: center;
+    width: 90%;
+    font-size: 24px;
+    font-weight: 600;
+    /* outline: 1px solid red; */
+  }
+
+  .container2Bottom {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    gap: 25px;
+    /* outline: 1px solid red; */
+  }
+
+  .container2BottomCard {
+    display: flex;
+    align-items: start;
+    justify-content: ;
+    width: 100%;
+    gap: 10px;
+    padding: 0 10px 0 10px;
+  }
+
+  .container2BottomCard span:first-of-type {
+    /* display: flex; */
+    /* align-items: flex-end; */
+    text-align: end;
+    font-size: 54px;
+    font-weight: 700;
+    color: #ed5338;
+    /* padding: 0; */
+    width: 100px !important;
+    line-height: 45px;
+    /* outline: 1px solid red; */
+  }
+
+  .container2BottomCard span:nth-of-type(2) {
+    font-size: 15px;
+    font-weight: 500;
+    width: 400px;
+    /* line-height: 20px; */
+    /* outline: 1px solid red; */
+  }
+}

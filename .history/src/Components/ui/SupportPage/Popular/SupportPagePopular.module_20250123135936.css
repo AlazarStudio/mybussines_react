@@ -1,7 +1,0 @@
-.svg-icon {
-  transition: filter 0.3s ease;
-}
-
-.svg-icon:hover {
-  filter: brightness(0) saturate(100%) invert(54%) sepia(96%) saturate(548%) hue-rotate(334deg) brightness(100%) contrast(102%);
-}
