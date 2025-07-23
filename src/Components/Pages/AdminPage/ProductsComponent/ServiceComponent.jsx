@@ -17,6 +17,7 @@ import { Create, SimpleForm, TextInput, useGetList, Edit } from 'react-admin';
 import { handleSave, handleSaveWithImages } from '../JS/fileUploadUtils';
 import uploadsConfig from '../../../../uploadsConfig';
 import RichTextInput from '../Auth/RichTextInput';
+import MyRichTextInput from './MyRichTextInput';
 
 // 📌 Список сервисов
 export const ServiceList = (props) => (
@@ -47,7 +48,7 @@ export const ServiceCreate = (props) => (
   <Create {...props} transform={handleSave}>
     <SimpleForm>
       <TextInput source="title" label="Название" />
-      <RichTextInput source="description" label="Описание" multiline />
+      <MyRichTextInput source="description" label="Описание" multiline />
 
       {/* ✅ Выбор нескольких центров */}
       <ReferenceArrayInput
@@ -81,7 +82,7 @@ export const ServiceEdit = (props) => (
   <Edit {...props} transform={handleSaveWithImages}>
     <SimpleForm>
       <TextInput source="title" label="Название" />
-      <RichTextInput source="description" label="Описание" multiline />
+      <MyRichTextInput source="description" label="Описание" multiline />
 
       {/* ✅ Выбор нескольких центров */}
       <ReferenceArrayInput

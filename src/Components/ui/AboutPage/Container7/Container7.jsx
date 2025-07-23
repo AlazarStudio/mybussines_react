@@ -35,7 +35,7 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/" />
+                <img src="/images/zzzz.png" />
                 <span>Боташева Зухра Хасановна</span>
                 <span>Главный бухгалтер</span>
                 <span>reception@moibiz09.ru</span>
@@ -249,7 +249,7 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/" />
+                <img src="/images/112222.png" />
                 <span>Дышеков Рамазан Петрович</span>
                 <span>Начальник юридического отдела</span>
                 <span>reception@moibiz09.ru</span>

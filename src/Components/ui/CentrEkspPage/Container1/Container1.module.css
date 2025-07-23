@@ -19,11 +19,12 @@
 }
 .containerLeft img:nth-of-type(2) {
   position: absolute;
-  width: 330px;
-  height: 457px;
+  width: 470px;
+  /* height: 457px; */
   left: 63px;
   bottom: 0;
   z-index: 1;
+  object-fit: cover;
 }
 .containerLeft img:nth-of-type(3) {
   position: absolute;

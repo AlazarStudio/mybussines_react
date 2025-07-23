@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import classes from './Bid.module.css';
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
+import serverConfig from '../../../serverConfig';
 
 export default function Bid() {
   const [formData, setFormData] = useState({
@@ -77,7 +78,7 @@ export default function Bid() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/bids', {
+      const response = await fetch(`${serverConfig}/bids`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

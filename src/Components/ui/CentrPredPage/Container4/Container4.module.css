@@ -60,6 +60,11 @@
   transition: all ease-out 0.4s;
 }
 
+.containerCard:hover .containerCardBottom span {
+  left: 0px;
+  color: #fff;
+}
+
 .containerCard:hover img:nth-of-type(3) {
   left: 0px;
 }
@@ -84,32 +89,33 @@
   overflow: hidden;
   text-overflow: ellipsis; /* Показывать троеточие */
   /* outline: 1px solid red; */
+  transition: all 0.3s ease-in-out;
 }
 
 .containerCardBottom span:nth-of-type(2) {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   margin-right: 35px;
   border-radius: 50px;
-  border: 2px solid #562211;
+  /* border: 2px solid #562211; */
 
   /* outline: 1px solid red; */
 }
 
 .containerCardBottom img {
-  width: 30px !important;
-  height: 15px !important;
+  width: 60px !important;
+  /* height: 15px !important; */
+  color: #ed5338;
   /* outline: 1px solid red; */
 }
 
 @media (max-width: 768px) {
-
-.container{
-  margin: 10px;
-}
+  .container {
+    margin: 10px;
+  }
 
   .title {
     display: flex;

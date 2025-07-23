@@ -11,7 +11,7 @@ function Container1({ children, ...props }) {
       <div className={classes.container}>
         <div className={classes.containerLeft}>
           <img src="/images/centrPred1.png" />
-          <img src="/images/about_structure_img_10-no-bg-preview (carve.photos).png" />
+          <img src="/images/zzzz.png" />
           <img src="/images/centrPred3.png" />
           <span>Тамбиева Амина Джетуловна</span>
           <span>Начальник центра поддержки экспорта</span>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './CentrTehPage.module.css';
 
 import Bid from '../../ui/Bid/Bid';
@@ -7,8 +7,15 @@ import Container2 from '../../ui/CentrTehPage/Container2/Container2';
 import Container3 from '../../ui/CentrTehPage/Container3/Container3';
 import Container4 from '../../ui/CentrTehPage/Container4/Container4';
 import Container6 from '../../ui/CentrTehPage/Container6/Container6';
+import { useLocation } from 'react-router-dom';
 
 function CentrTehPage({ children, ...props }) {
+
+    const location = useLocation();
+
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]); // скролл вверх при изменении маршрута
   return (
     <>
       <Container1 />

@@ -21,7 +21,6 @@
   outline: none;
 }
 
-
 .inputWrapper {
   position: relative;
   width: 100%;
@@ -111,6 +110,38 @@
   border-radius: 30px;
   margin-bottom: 20px;
   cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 40px;
+  /* margin-top: 30px; */
+}
+
+.pageButton {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  background-color: white;
+    color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.pageButton:hover {
+  background-color: #f0f0f0;
+  color: white;
+}
+
+.active {
+  /* background-color: #ed5338; */
+  color: white;
+  background-color: #ed5338 !important;
+  border-color: #ed5338;
 }
 
 @media (max-width: 768px) {

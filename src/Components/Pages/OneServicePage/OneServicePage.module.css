@@ -1,3 +1,7 @@
+.box {
+  width: 100%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -9,27 +13,15 @@
   border-radius: 30px;
 }
 
-.container a {
-  font-size: 18px;
-  color: black !important; /* Цвет ссылки */
-  text-decoration: none;
-  margin-top: 20px;
-  display: inline-block; /* Делаем ссылку видимой */
-}
-
-.container a:hover {
-  text-decoration: underline;
-  color: red;
-}
-
 .containerNav a {
-  display: inline-block;
-  font-size: 16px;
-  color: red !important;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ed5338;
 }
 
 .containerNav span {
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 400;
   color: black;
 }
 
@@ -57,20 +49,18 @@
 }
 
 .articleText {
-  padding: 90px 30px;
-  font-size: 20px;
-  line-height: 30px;
+  /* padding: 90px 30px; */
+  /* font-size: 20px; */
+  /* line-height: 30px; */
   white-space: pre-wrap;
-  border: 1px solid #777;
-  border-radius: 20px;
+  /* border: 1px solid #777; */
+  /* border-radius: 20px; */
 }
 
-/* .containerNews p {
-  display: flex;
-  text-align: left;
-  font-size: 18px;
-  font-weight: 400;
-} */
+.containerNews p {
+  width: 100%;
+  font-size: 20px;
+}
 
 .containerNews img {
   margin-top: 50px;
@@ -78,14 +68,78 @@
   width: 300px;
 }
 
+.articleText p {
+  margin: 1em 0;
+  line-height: 1.6;
+}
+
+.articleText h1, .articleText h2 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.articleText ul {
+  margin-left: 1.5em;
+  list-style-type: disc;
+}
+
+.articleText {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.articleText p {
+  margin: 1em 0;
+}
+
+.articleText h1, .articleText h2, .articleText h3 {
+  font-weight: bold;
+  margin: 1.2em 0 0.6em;
+  line-height: 1.3;
+}
+
+.articleText ul {
+  padding-left: 1.5em;
+  margin: 1em 0;
+  list-style-type: disc;
+}
+
+.articleText ol {
+  padding-left: 1.5em;
+  margin: 1em 0;
+  list-style-type: decimal;
+}
+
+.articleText li {
+  margin-bottom: 0.5em;
+}
+
+.articleText a {
+  color: #ed5338;
+  text-decoration: underline;
+}
+
+.articleText img {
+  max-width: 100%;
+  margin: 1.5em 0;
+  border-radius: 8px;
+}
+
+
 @media (max-width: 768px) {
+  .box {
+    display: flex;
+    padding: 10px;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 100%;
     background-color: #ffff;
-    margin: 11px;
     padding: 10px;
+    margin-top: 10px;
     border-radius: 20px;
   }
 
@@ -95,11 +149,13 @@
 
   .containerNav a {
     font-size: 14px;
-    color: red;
+    font-weight: 400;
+    color: #ed5338;
   }
 
   .containerNav span {
     font-size: 14px;
+    font-weight: 400;
     color: black;
   }
 
@@ -127,15 +183,14 @@
   }
 
   .containerNews p {
-    display: flex;
-    text-align: left;
-    font-size: 16px;
-    font-weight: 400;
+    width: 100%;
+    font-size: 14px;
+    
   }
 
   .containerNews img {
     margin-top: 40px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     border-radius: 10px;
     width: 100%;
   }

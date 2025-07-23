@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './ShowCasesPage.module.css';
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function ShowCasesPage({ children, ...props }) {
   const navigate = useNavigate()
+
+    const location = useLocation();
+
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]); // скролл вверх при изменении маршрута
+
   return (
     <>
       <CenterBlock>

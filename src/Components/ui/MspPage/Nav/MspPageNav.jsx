@@ -12,6 +12,8 @@ function MspPageNav({ children, ...props }) {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [modalStyle, setModalStyle] = useState({ top: 0, left: 0 });
   const menuButtonRef = useRef(null);
+  const dropdownRef = useRef(null);
+
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -33,10 +35,29 @@ function MspPageNav({ children, ...props }) {
   };
 
   useEffect(() => {
+    if (!isMenuOpen) return;
+
     updateModalPosition();
+
+    const handleOutsideClick = (e) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target) &&
+        menuButtonRef.current &&
+        !menuButtonRef.current.contains(e.target)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', updateModalPosition);
     window.addEventListener('resize', updateModalPosition);
+    document.addEventListener('mousedown', handleOutsideClick);
+
     return () => {
+      window.removeEventListener('scroll', updateModalPosition);
       window.removeEventListener('resize', updateModalPosition);
+      document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, [isMenuOpen]);
 
@@ -53,78 +74,76 @@ function MspPageNav({ children, ...props }) {
                 alt="Logo"
                 onClick={() => navigate('/')}
               />
-              <button
-                ref={menuButtonRef}
-                onClick={toggleMenu}
-                className={classes.menuButton}
-                aria-expanded={isMenuOpen}
-              >
-                <img src="/images/burger.png" alt="Menu" />
-                Меню
-              </button>
+              <div>
+                <button
+                  ref={menuButtonRef}
+                  onClick={toggleMenu}
+                  className={classes.menuButton}
+                  aria-expanded={isMenuOpen}
+                >
+                  <img src="/images/burger.png" alt="Menu" />
+                  Меню
+                </button>
 
-              <Modal
-                isOpen={isMenuOpen}
-                onRequestClose={closeModal}
-                className={classes.modalBox}
-                overlayClassName={classes.modalOverlay}
-                style={{
-                  content: {
-                    position: 'absolute',
-                    top: modalStyle.top,
-                    left: modalStyle.left,
-                    transform: 'translateY(20px)',
-                    width: '250px',
-                    maxHeight: '300px',
-                  },
-                  overlay: {},
-                }}
-              >
-                <nav className={classes.modalNav}>
-                  <ul>
-                    <li>
-                      <Link to="/" onClick={closeModal}>
-                        Главная
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/news" onClick={closeModal}>
-                        Новости
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/supports" onClick={closeModal}>
-                        Меры поддержки
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/service" onClick={closeModal}>
-                        Услуги
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/about" onClick={closeModal}>
-                        О Нас
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/contacts" onClick={closeModal}>
-                        Контакты
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/base_knowledge" onClick={closeModal}>
-                        База знаний
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/showcases" onClick={closeModal}>
-                        Витрина Предпринимателей
-                      </Link>
-                    </li>
-                  </ul>
-                </nav>
-              </Modal>
+                {isMenuOpen && (
+                  <div
+                    ref={dropdownRef}
+                    className={classes.dropdownMenu}
+                    style={{
+                      position: 'absolute',
+                      top: modalStyle.top,
+                      left: modalStyle.left,
+                      transform: 'translateY(10px)',
+                      zIndex: 9999,
+                    }}
+                  >
+                    <nav className={classes.modalNav}>
+                      <ul>
+                        <li>
+                          <Link to="/" onClick={closeModal}>
+                            Главная
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/news" onClick={closeModal}>
+                            Новости
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/supports" onClick={closeModal}>
+                            Меры поддержки
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/service" onClick={closeModal}>
+                            Услуги
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/about" onClick={closeModal}>
+                            О Нас
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/contacts" onClick={closeModal}>
+                            Контакты
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/base_knowledge" onClick={closeModal}>
+                            База знаний
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/showcases" onClick={closeModal}>
+                            Витрина
+                          </Link>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Социальные сети */}
@@ -133,7 +152,7 @@ function MspPageNav({ children, ...props }) {
                 src="/images/okNew.png"
                 alt="OK"
                 onClick={() =>
-                  window.open('https://okNew.ru/group/70000000007896', '_blank')
+                  window.open('https://ok.ru/group/70000000007896', '_blank')
                 }
               />
               <img

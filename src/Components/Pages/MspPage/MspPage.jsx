@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './MspPage.module.css';
 import MspPageNav from '../../ui/MspPage/Nav/MspPageNav';
 import Container1 from '../../ui/MspPage/Container1/Container1';
@@ -10,8 +10,15 @@ import Container4 from '../../ui/MspPage/Container4/Container4';
 import Container5 from '../../ui/MspPage/Container5/Container5';
 import Container6 from '../../ui/MspPage/Container6/Container6';
 import Footer from '../../Blocks/Footer/Footer';
+import { useLocation } from 'react-router-dom';
 
 function MspPage({ children, ...props }) {
+
+  const location = useLocation();
+
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]); // скролл вверх при изменении маршрута
   return (
     <>
       <div className={classes.color}>

@@ -12,7 +12,6 @@ import WidthBlock from '../../../Standart/WidthBlock/WidthBlock';
 import Bid from '../../Bid/Bid';
 
 function OneSupportPage() {
-  
   const { title } = useParams();
 
   // Декодируем заголовок из URL
@@ -23,6 +22,10 @@ function OneSupportPage() {
   const [supports, setSupports] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]); // скролл вверх при изменении маршрута
 
   useEffect(() => {
     const fetchData = async () => {
@@ -153,27 +156,29 @@ function OneSupportPage() {
   return (
     <CenterBlock>
       <WidthBlock>
-        <div className={classes.container}>
-          <div className={classes.containerNav}>
-            <Link to="/">Главная / </Link>
-            <Link to="/supports">Меры поддержки / </Link>
-            <span>{currentSupports.title}</span>
-          </div>
+        <div className={classes.box}>
+          <div className={classes.container}>
+            <div className={classes.containerNav}>
+              <Link to="/">Главная / </Link>
+              <Link to="/supports">Меры поддержки / </Link>
+              <span>{currentSupports.title}</span>
+            </div>
 
-          <div className={classes.containerNews}>
-            <span>{currentSupports.title}</span>
-            <p
-              className={classes.articleText}
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(currentSupports.description),
-                // __html: `${article.text}`
-              }}
-            ></p>
-            {/* <span>{new Date(currentNews.date).toLocaleDateString('ru-RU')}</span> */}
-            <img
-              src={`${uploadsConfig}${currentSupports.img[0]}`}
-              alt={currentSupports.title}
-            />
+            <div className={classes.containerNews}>
+              <span>{currentSupports.title}</span>
+              <p
+                className={classes.articleText}
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(currentSupports.description),
+                  // __html: `${article.text}`
+                }}
+              ></p>
+              {/* <span>{new Date(currentNews.date).toLocaleDateString('ru-RU')}</span> */}
+              <img
+                src={`${uploadsConfig}${currentSupports.img[0]}`}
+                alt={currentSupports.title}
+              />
+            </div>
           </div>
         </div>
         <Bid />

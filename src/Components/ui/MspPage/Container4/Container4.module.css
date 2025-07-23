@@ -17,6 +17,7 @@
   width: 371px;
   height: 290px;
   border-radius: 280px;
+  object-fit: cover;
 }
 
 .containerElText {

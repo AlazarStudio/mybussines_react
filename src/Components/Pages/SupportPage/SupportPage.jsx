@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import classes from './SupportPage.module.css';
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
@@ -7,6 +7,7 @@ import SupportPageNav from '../../ui/SupportPage/Nav/SupportPageNav';
 import SupportPagePopular from '../../ui/SupportPage/Popular/SupportPagePopular';
 import SupportPageAll from '../../ui/SupportPage/All/SupportPageAll';
 import Footer from '../../Blocks/Footer/Footer';
+import { useLocation } from 'react-router-dom';
 // import serverConfig from '../../../serverConfig';
 
 function SupportPage({ children, ...props }) {
@@ -15,6 +16,13 @@ function SupportPage({ children, ...props }) {
   const handleTabClick = (tab) => {
     setActiveTab(tab); // Устанавливаем активный таб
   };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]); // скролл вверх при изменении маршрута
+
   return (
     <>
       <div className={classes.containerTop}>

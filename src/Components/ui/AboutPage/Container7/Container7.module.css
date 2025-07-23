@@ -53,6 +53,7 @@
   width: 208px;
   height: 290px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .container7Card span:first-of-type {

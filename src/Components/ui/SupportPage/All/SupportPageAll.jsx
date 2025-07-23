@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classes from './SupportPageAll.module.css';
 import CenterBlock from '../../../Standart/CenterBlock/CenterBlock';
 import WidthBlock from '../../../Standart/WidthBlock/WidthBlock';
 import serverConfig from '../../../../serverConfig';
 import uploadsConfig from '../../../../uploadsConfig';
 import { useNavigate } from 'react-router-dom';
+
+const ITEMS_PER_PAGE = 12;
 
 export default function SupportPageAll({ activeTab }) {
   const navigate = useNavigate();
@@ -13,7 +15,9 @@ export default function SupportPageAll({ activeTab }) {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState(''); // 🔍 Состояние для поиска
   const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,13 +38,12 @@ export default function SupportPageAll({ activeTab }) {
   }, []);
 
   useEffect(() => {
-  const handler = setTimeout(() => {
-    setDebouncedQuery(searchQuery);
-  }, 300); // ⏱ 300 мс задержка
+    const handler = setTimeout(() => {
+      setDebouncedQuery(searchQuery);
+    }, 300); // ⏱ 300 мс задержка
 
-  return () => clearTimeout(handler);
-}, [searchQuery]);
-
+    return () => clearTimeout(handler);
+  }, [searchQuery]);
 
   // 🔍 Фильтрация по вкладке (federal/regional) + поиск по названию
   const filteredSupportsType = supports
@@ -53,11 +56,46 @@ export default function SupportPageAll({ activeTab }) {
       }
       return false;
     })
-    .filter(
-      (support) =>
-        support.title.toLowerCase().includes(debouncedQuery.toLowerCase())
-
+    .filter((support) =>
+      support.title.toLowerCase().includes(debouncedQuery.toLowerCase())
     );
+
+  const totalPages = Math.ceil(filteredSupportsType.length / ITEMS_PER_PAGE);
+  const paginatedNews = filteredSupportsType.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  function getPaginationRange(current, total) {
+    const delta = 2;
+    const range = [];
+    const rangeWithDots = [];
+    let l;
+
+    for (let i = 1; i <= total; i++) {
+      if (
+        i === 1 ||
+        i === total ||
+        (i >= current - delta && i <= current + delta)
+      ) {
+        range.push(i);
+      }
+    }
+
+    for (let i of range) {
+      if (l) {
+        if (i - l === 2) {
+          rangeWithDots.push(l + 1);
+        } else if (i - l > 2) {
+          rangeWithDots.push('...');
+        }
+      }
+      rangeWithDots.push(i);
+      l = i;
+    }
+
+    return rangeWithDots;
+  }
 
   const transliterate = (text) => {
     const map = {
@@ -132,12 +170,19 @@ export default function SupportPageAll({ activeTab }) {
       .join('');
   };
 
+  useEffect(() => {
+  if (scrollRef.current) {
+    scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}, [currentPage]);
+
+
   return (
     <>
       <div className={classes.back}>
         <CenterBlock>
           <WidthBlock>
-            <div className={classes.containerGroup}>
+            <div className={classes.containerGroup} ref={scrollRef}>
               {/* 🔍 Поле ввода для поиска */}
               <div className={classes.inputWrapper}>
                 <input
@@ -148,13 +193,13 @@ export default function SupportPageAll({ activeTab }) {
                   className={classes.searchInput}
                 />
                 <span className={classes.searchIcon}>
-                  <img src='/images/coolicon (4).png'/>
+                  <img src="/images/coolicon (4).png" />
                 </span>
               </div>
 
               <div className={classes.containerGroupContent}>
-                {filteredSupportsType.length > 0 ? (
-                  filteredSupportsType.map((support) => (
+                {paginatedNews.length > 0 ? (
+                  paginatedNews.map((support) => (
                     <div
                       className={classes.containerGroupContentCard}
                       key={support.id}
@@ -186,6 +231,63 @@ export default function SupportPageAll({ activeTab }) {
                   <p className={classes.noResults}>Ничего не найдено</p>
                 )}
               </div>
+
+              {totalPages > 1 && (
+                <div className={classes.pagination}>
+                  <button
+                    style={{
+                      background:
+                        activeTab === 'federal' ? '#3D2A92' : '#733897',
+                    }}
+                    className={classes.pageButton}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(1, prev - 1))
+                    }
+                    disabled={currentPage === 1}
+                  >
+                    &lt;
+                  </button>
+                  {getPaginationRange(currentPage, totalPages).map(
+                    (page, index) =>
+                      page === '...' ? (
+                        <span
+                          key={`ellipsis-${index}`}
+                          className={classes.ellipsis}
+                        >
+                          ...
+                        </span>
+                      ) : (
+                        <button
+                          style={{
+                            background:
+                              activeTab === 'federal' ? '#3D2A92' : '#733897',
+                          }}
+                          key={`page-${page}`}
+                          className={`${classes.pageButton} ${
+                            currentPage === page ? classes.active : ''
+                          }`}
+                          onClick={() => setCurrentPage(page)}
+                          disabled={currentPage === page}
+                        >
+                          {page}
+                        </button>
+                      )
+                  )}
+                  <button
+                    className={classes.pageButton}
+                    style={{
+                      background:
+                        activeTab === 'federal' ? '#3D2A92' : '#733897',
+                    }}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                    }
+                    disabled={currentPage === totalPages}
+                  >
+                    &gt;
+                  </button>
+                </div>
+              )}
             </div>
           </WidthBlock>
         </CenterBlock>

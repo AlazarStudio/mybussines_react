@@ -27,7 +27,7 @@ function Footer({ children, ...props }) {
               </div>
               <div className={classes.containerBottom}>
                 <div className={classes.containerBottomLeft}>
-                  <span>&copy; 2023 Мой бизнес Карачаево-Черкессия</span>
+                  <span>&copy; 2023 Мой бизнес Карачаево-Черкесия</span>
                   <a
                     href="/pologenie_ob_obrabotke_pd.pdf"
                     target="_blank"
@@ -49,14 +49,14 @@ function Footer({ children, ...props }) {
                   >
                     Положение об оказании платных услуг
                   </a>
-                   <a
+                  <a
                     href="/Prikaz_10-P.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     Приказ о внесении изменений в положение о платных услугах
                   </a>
-                   <a
+                  <a
                     href="/Устав АНО Мой бизнес.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -77,14 +77,14 @@ function Footer({ children, ...props }) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src="/images/tg.png" />
+                      <img src="/images/tgb.png" />
                     </a>
                     <a
                       href="https://vk.com/moibiz_kchr"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src="/images/vk.png" />
+                      <img src="/images/vkb.png" />
                     </a>
                   </div>
                   <div className={classes.containerBottomRightBottom}>

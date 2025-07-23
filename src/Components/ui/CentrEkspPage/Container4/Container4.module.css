@@ -99,8 +99,9 @@
 }
 
 .containerCardBottom img {
-  width: 30px !important;
-  height: 15px !important;
+  width: 60px !important;
+  /* height: 15px !important; */
+  color: #ed5338;
   /* outline: 1px solid red; */
 }
 

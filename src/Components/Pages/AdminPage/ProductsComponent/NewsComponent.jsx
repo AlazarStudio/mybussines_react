@@ -16,10 +16,14 @@ import { uploadFile, uploadFiles } from '../JS/fileUploadUtils';
 import { handleSave, handleSaveWithImages } from '../JS/fileUploadUtils';
 import uploadsConfig from '../../../../uploadsConfig';
 import RichTextInput from '../Auth/RichTextInput';
+import MyRichTextInput from './MyRichTextInput';
 
 // Список всех категорий
 export const NewsList = (props) => (
-  <List {...props}>
+  <List
+    {...props}
+    sort={{ field: 'date', order: 'DESC' }} // Сортировка по убыванию даты
+  >
     <Datagrid rowClick="edit">
       <TextField source="id" label="ID" />
       <TextField source="title" label="Название" />
@@ -45,7 +49,7 @@ export const NewsCreate = (props) => (
         parse={(value) => (value ? new Date(value).toISOString() : null)}
       />
 
-      <RichTextInput source="description" label="Описание" />
+      <MyRichTextInput source="description" label="Описание" />
       <ImageInput source="img" label="Загрузить изображение" multiple>
         <ImageField source="src" title="title" />
       </ImageInput>
@@ -59,7 +63,7 @@ export const NewsEdit = (props) => (
     <SimpleForm>
       <TextInput source="title" label="Title" />
       <DateInput source="date" label="Дата" />
-      <RichTextInput source="description" label="Описание" />
+      <MyRichTextInput source="description" label="Описание" />
       <ImageInput
         source="imagesRaw"
         label="Загрузить новые изображения"

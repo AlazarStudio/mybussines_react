@@ -39,6 +39,36 @@
   color: #555;
 }
 
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 40px;
+  /* margin-top: 30px; */
+}
+
+.pageButton {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.pageButton:hover {
+  background-color: #f0f0f0;
+}
+
+.active {
+  background-color: #ed5338;
+  color: white;
+  border-color: #ed5338;
+}
+
 /* .title {
     display: flex;
     align-items: center;
@@ -71,23 +101,26 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  gap: 39px;
+  justify-content: space-between;
+
+  gap: 20px;
   /* outline: 1px solid red; */
-  padding-left: 25px;
-  padding-right: 25px;
+  /* padding-left: 25px;
+  padding-right: 25px; */
   margin-bottom: 30px;
+  margin-top: -40px;
 }
 
 .containerCard {
   display: flex;
   position: relative;
   flex-direction: column;
-  width: 390px;
+  width: 32%;
   height: 251px;
   border-radius: 20px;
   background-color: #fefefe;
   overflow: hidden;
-  transition: all ease-out 0.2s;
+  transition: all 0.3s ease-out ;
   /* outline: 1px solid red; */
 }
 
@@ -109,9 +142,9 @@
 .containerCard img:nth-of-type(3) {
   display: flex;
   position: absolute;
-  width: 270px;
+  width: 290px;
   height: 110%;
-  left: -280px;
+  left: -300px;
   transition: all ease-out 0.4s;
 }
 
@@ -249,6 +282,7 @@
     gap: 39px;
     /* outline: 1px solid red; */
     padding: 10px;
+    margin-top: 0;
     margin-bottom: 30px;
   }
 

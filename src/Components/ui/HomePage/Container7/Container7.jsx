@@ -6,6 +6,89 @@ import WidthBlock from '../../../Standart/WidthBlock/WidthBlock';
 import serverConfig from '../../../../serverConfig';
 import uploadsConfig from '../../../../uploadsConfig';
 
+export function slugify(title) {
+  const map = {
+    А: 'A',
+    Б: 'B',
+    В: 'V',
+    Г: 'G',
+    Д: 'D',
+    Е: 'E',
+    Ё: 'E',
+    Ж: 'Zh',
+    З: 'Z',
+    И: 'I',
+    Й: 'Y',
+    К: 'K',
+    Л: 'L',
+    М: 'M',
+    Н: 'N',
+    О: 'O',
+    П: 'P',
+    Р: 'R',
+    С: 'S',
+    Т: 'T',
+    У: 'U',
+    Ф: 'F',
+    Х: 'Kh',
+    Ц: 'Ts',
+    Ч: 'Ch',
+    Ш: 'Sh',
+    Щ: 'Shch',
+    Ъ: '',
+    Ы: 'Y',
+    Ь: '',
+    Э: 'E',
+    Ю: 'Yu',
+    Я: 'Ya',
+    а: 'a',
+    б: 'b',
+    в: 'v',
+    г: 'g',
+    д: 'd',
+    е: 'e',
+    ё: 'e',
+    ж: 'zh',
+    з: 'z',
+    и: 'i',
+    й: 'y',
+    к: 'k',
+    л: 'l',
+    м: 'm',
+    н: 'n',
+    о: 'o',
+    п: 'p',
+    р: 'r',
+    с: 's',
+    т: 't',
+    у: 'u',
+    ф: 'f',
+    х: 'kh',
+    ц: 'ts',
+    ч: 'ch',
+    ш: 'sh',
+    щ: 'shch',
+    ъ: '',
+    ы: 'y',
+    ь: '',
+    э: 'e',
+    ю: 'yu',
+    я: 'ya',
+    ' ': '-',
+    ',': '',
+    '%': '', // <- удаляем запятые и проценты из slug
+  };
+
+  return title
+    .replaceAll('«', '')
+    .replaceAll('»', '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split('')
+    .map((char) => map[char] || char)
+    .join('');
+}
+
 function Container7() {
   const navigate = useNavigate();
   const [servicesList, setServicesList] = useState([]); // Переименовал, чтобы избежать конфликта с import service
@@ -21,7 +104,13 @@ function Container7() {
         if (!response.ok) throw new Error(`Ошибка ${response.status}`);
 
         const serviceData = await response.json();
-        setServicesList(serviceData);
+
+        // Если есть поле `date`, сортируем по убыванию и берём последние 6
+        const sorted = serviceData
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 6); // <- последние 6 (по новым)
+
+        setServicesList(sorted);
       } catch (err) {
         console.error('Ошибка загрузки данных:', err);
         setError('Ошибка загрузки данных');
@@ -62,15 +151,12 @@ function Container7() {
                 <img src="/images/orangeSer.png" alt="Orange Background" />
 
                 <div className={classes.containerCardBottom}>
-                  <span>{el.title}123</span>
+                  <span>{el.title}</span>
                   <span
                     className={classes.readMore}
                     onClick={() =>
                       navigate(
-                        `/service/${el.title
-                          .replaceAll(' ', '-')
-                          .replaceAll('«', '')
-                          .replaceAll('»', '')}`
+                        `/service/${encodeURIComponent(slugify(el.title))}`
                       )
                     }
                   >
