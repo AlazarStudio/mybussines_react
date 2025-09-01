@@ -23,7 +23,7 @@ function AboutPage({ children, ...props }) {
       <CenterBlock>
         <WidthBlock>
           <Container1 />
-          <Container2 />
+          {/* <Container2 /> */}
           <Container3 />
           <Container4 />
           <Container5 />

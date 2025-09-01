@@ -64,7 +64,7 @@ function PlanBusPage({ children, ...props }) {
             <div className={classes.container}>
               {' '}
               <div className={classes.containerText}>
-                <span>КАК СТАТЬ ИНДИВИДУАЛЬНЫМ ПРЕДПРИНИМАТЛЕМ</span>
+                <span>КАК СТАТЬ ИНДИВИДУАЛЬНЫМ ПРЕДПРИНИМАТЕЛЕМ</span>
                 <button onClick={() => navigate('/contacts#bid')}>
                   Записаться на консультацию
                 </button>

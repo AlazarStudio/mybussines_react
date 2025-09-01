@@ -16,14 +16,14 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/about1.png" />
+                <img src="/images/hubieva11.jpg" />
                 <span>Хубиева Диана Казимовна</span>
                 <span>Директор</span>
                 <span>d.khubieva@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
               <div className={classes.container7Card}>
-                <img src="/images/about4.png" />
+                <img src="/images/urusov11.jpg" />
                 <span>Урусов Салых Манафович</span>
                 <span>Заместитель директора</span>
                 <span>reception@moibiz09.ru</span>
@@ -35,14 +35,14 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/zzzz.png" />
+                <img src="/images/botasheva11.jpg" />
                 <span>Боташева Зухра Хасановна</span>
                 <span>Главный бухгалтер</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
               <div className={classes.container7Card}>
-                <img src="/images/about2.png" />
+                <img src="/images/stabrovskaya11.jpg" />
                 <span>Стабровская Марина Владимировна</span>
                 <span>Главный специалист финансового отдела</span>
                 <span>reception@moibiz09.ru</span>
@@ -51,14 +51,14 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               {/* <div className={classes.container7Card}>
-                <img src="/images/about2.png" />
+                <img src="/images/about2.JPG" />
                 <span>Стабровская Марина Владимировна</span>
                 <span>Главный специалист финансового отдела</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
               <div className={classes.container7Card}>
-                <img src="/images/about3.png" />
+                <img src="/images/about3.JPG" />
                 <span>Астахов Владислав Андреевич</span>
                 <span>Инженер-программист</span>
                 <span>reception@moibiz09.ru</span>
@@ -70,14 +70,14 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/about9.png" />
+                <img src="/images/perova11.jpg" />
                 <span>Перова Анастасия Геннадьевна</span>
                 <span>Начальник центра поддержки предпринимательства</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
               {/* <div className={classes.container7Card}>
-                <img src="/images/about5.png" />
+                <img src="/images/about5.JPG" />
                 <span>Унежева Диана Владимировна</span>
                 <span>
                   Заместитель начальника центра поддержки предпринимательства
@@ -86,7 +86,7 @@ function Container7({ children, ...props }) {
                 <span>8 (8782) 25-02-27</span>
               </div> */}
               <div className={classes.container7Card}>
-                <img src="/images/about6.png" />
+                <img src="/images/gerbekova11.jpg" />
                 <span>Гербекова Эстелла Мухаджировна</span>
                 <span>
                   Заместитель начальника центра поддержки предпринимательства
@@ -95,7 +95,7 @@ function Container7({ children, ...props }) {
                 <span>8 (8782) 25-02-27</span>
               </div>
               <div className={classes.container7Card}>
-                <img src="/images/KushpovSh.jpg" />
+                <img src="/images/kushpov11.jpg" />
                 <span>Кушпов Шамиль Робертович</span>
                 <span>
                   Главный специалист центра поддержки предпринимательства
@@ -103,8 +103,17 @@ function Container7({ children, ...props }) {
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
+              <div className={classes.container7Card}>
+                <img src="/images/meramova11.jpg" />
+                <span>Мерамова Лиана Борисовна</span>
+                <span>
+                  Ведущий специалист центра поддержки предпринимательства
+                </span>
+                <span>reception@moibiz09.ru</span>
+                <span>8 (8782) 25-02-27</span>
+              </div>
               {/* <div className={classes.container7Card}>
-                <img src="/images/about7.png" />
+                <img src="/images/about7.JPG" />
                 <span>Пазова Амина Рашидовна</span>
                 <span>
                   Ведущий специалист центра поддержки предпринимательства
@@ -133,21 +142,21 @@ function Container7({ children, ...props }) {
                 <span>8 (8782) 25-02-27</span>
               </div> */}
               {/* <div className={classes.container7Card}>
-                <img src="/images/about9.png" />
+                <img src="/images/about9.JPG" />
                 <span>Перова Анастасия Геннадьевна</span>
                 <span>Заместитель начальника центра поддержки экспорта</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div> */}
               <div className={classes.container7Card}>
-                <img src="/images/about10.png" />
+                <img src="/images/tambieva11.jpg" />
                 <span>Тамбиева Амина Джетуловна</span>
-                <span>Главный специалист центра поддержки экспорта</span>
+                <span>Начальник центра поддержки экспорта</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
               <div className={classes.container7Card}>
-                <img src="/images/about14.png" />
+                <img src="/images/tekeeva11.jpg" />
                 <span>Текеева Зухра Ансаровна</span>
                 <span>
                   Главный специалист центра компетенций в сфере
@@ -168,15 +177,15 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/about11.png" />
+                <img src="/images/karasova11.jpg" />
                 <span>Карасова Джамиля Иссаевна</span>
                 <span>Начальник центра инноваций социальной сферы</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
               <div className={classes.container7Card}>
-                <img src="/images/about12.png" />
-                <span>Горельцева Наталья Павловна</span>
+                <img src="/images/podsvirova11.jpg" />
+                <span>Подсвирова Наталья Павловна</span>
                 <span>
                   Ведущий специалист центра инноваций социальной сферы
                 </span>
@@ -198,7 +207,7 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/DotdaevaZjpg.jpg" />
+                <img src="/images/yarovchuk11.jpg" />
                 <span>Яровчук Дарья Александровна</span>
                 <span>
                   Начальник центра компетенций в сфере сельскохозяйственной
@@ -207,18 +216,9 @@ function Container7({ children, ...props }) {
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
-              <div className={classes.container7Card}>
-                <img src="/images/YarovchukD.jpg" />
-                <span>Дотдаева Замира Ильясовна</span>
-                <span>
-                  Главный специалист центра компетенций в сфере
-                  сельскохозяйственной кооперации и поддержки фермеров
-                </span>
-                <span>reception@moibiz09.ru</span>
-                <span>8 (8782) 25-02-27</span>
-              </div>
+
               {/* <div className={classes.container7Card}>
-                <img src="/images/about13.png" />
+                <img src="/images/about13.JPG" />
                 <span>Митиани Халимат Хасановна</span>
                 <span>
                   Начальник центра компетенций в сфере сельскохозяйственной
@@ -228,7 +228,7 @@ function Container7({ children, ...props }) {
                 <span>8 (8782) 25-02-27</span>
               </div> */}
               {/* <div className={classes.container7Card}>
-                <img src="/images/about14.png" />
+                <img src="/images/about14.JPG" />
                 <span>Текеева Зухра Ансаровна</span>
                 <span>
                   Главный специалист центра компетенций в сфере
@@ -249,16 +249,36 @@ function Container7({ children, ...props }) {
             </div>
             <div className={classes.container7Sotr}>
               <div className={classes.container7Card}>
-                <img src="/images/112222.png" />
+                <img src="/images/dyshekov11.jpg" />
                 <span>Дышеков Рамазан Петрович</span>
                 <span>Начальник юридического отдела</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
               <div className={classes.container7Card}>
-                <img src="/images/about_structure_img_4.png" />
+                <img src="/images/astahov11.jpg" />
                 <span>Астахов Владислав Андреевич</span>
                 <span>Главный специалист по информационной безопасности</span>
+                <span>reception@moibiz09.ru</span>
+                <span>8 (8782) 25-02-27</span>
+              </div>
+            </div>
+
+            <div className={classes.container7Title}>
+              <span>Центр маркировки "Честный знак"</span>
+            </div>
+            <div className={classes.container7Sotr}>
+              <div className={classes.container7Card}>
+                <img src="/images/tekeeva11.jpg" />
+                <span>Текеева Зухра Ансаровна</span>
+                <span>Консультант</span>
+                <span>reception@moibiz09.ru</span>
+                <span>8 (8782) 25-02-27</span>
+              </div>
+              <div className={classes.container7Card}>
+                <img src="/images/podsvirova11.jpg" />
+                <span>Подсвирова Наталья Павловна</span>
+                <span>Консультант</span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>

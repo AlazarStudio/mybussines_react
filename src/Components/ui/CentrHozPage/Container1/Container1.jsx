@@ -9,16 +9,16 @@ function Container1({ children, ...props }) {
   return (
     <>
       <div className={classes.container}>
-        <div className={classes.containerLeft}>
+        {/* <div className={classes.containerLeft}>
           <img src="/images/centrPred1.png" />
-          <img src="/images/yarovchuk-no-bg.png" />
+          <img src="/images/Yarovchuk11.png" />
           <img src="/images/centrPred3.png" />
           <span>Яровчук Дарья Александровна</span>
           <span>
             Начальник центра компетенций в сфере сельскохозяйственной кооперации
             и поддержки фермеров
           </span>
-        </div>
+        </div> */}
         <div className={classes.containerRight}>
           <img src="/images/CentrHoz2.png" />
           <span>
@@ -27,7 +27,7 @@ function Container1({ children, ...props }) {
           </span>
           <span>
             Центр компетенций является структурным подразделением в составе
-            Центра «Мой бизнес» Карачаево-Черкесия и относится к инфраструктуре
+            Центра «Мой бизнес» КЧР и относится к инфраструктуре
             поддержки малого и среднего предпринимательства, который оказывает
             на территории КЧР информационно-консультационные услуги физическим и
             юридическим лицам, обеспечивает содействие в создании и развитии

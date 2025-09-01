@@ -56,6 +56,13 @@ function Footer({ children, ...props }) {
                   >
                     Приказ о внесении изменений в положение о платных услугах
                   </a>
+                     <a
+                    href="/Концепция развития ЦПП.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Концепция развития ЦПП
+                  </a>
                   <a
                     href="/Устав АНО Мой бизнес.pdf"
                     target="_blank"

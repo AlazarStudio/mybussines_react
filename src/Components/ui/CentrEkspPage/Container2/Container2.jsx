@@ -11,7 +11,7 @@ function Container2({ children, ...props }) {
           <div className={classes.container}>
             <div className={classes.containerTitle}>
               <span>
-                Центром координации поддержки экспорта КЧР оказываются следующие
+                Центром поддержки экспорта КЧР оказываются следующие
                 виды услуг:
               </span>
             </div>
@@ -39,7 +39,6 @@ function Container2({ children, ...props }) {
               <div className={classes.containerBottomEl}>
                 <span>04</span>
                 <span>
-                  организация межрегиональных бизнес-миссий и конференций;
                   организация участия СМСП в выставочно-ярмарочных мероприятиях
                   на территории РФ
                 </span>

@@ -15,6 +15,12 @@ function Container3({ children, ...props }) {
             </span>
             <div className={classes.containerBottom}>
               <div className={classes.containerBottomEl}>
+                <img src="/images/eksp11111.png" />
+                <span>
+                  Содействие выходу на экспорт субъектов МСП
+                </span>
+              </div>
+              <div className={classes.containerBottomEl}>
                 <img src="/images/centrEksp2.png" />
                 <span>
                   Формирование позитивного имиджа предпринимателя в

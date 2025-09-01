@@ -9,13 +9,13 @@ function Container1({ children, ...props }) {
   return (
     <>
       <div className={classes.container}>
-        <div className={classes.containerLeft}>
+        {/* <div className={classes.containerLeft}>
           <img src="/images/centrPred1.png" />
-          <img src="/images/CentrInnov1.png" />
+          <img src="/images/Karasova11.png" />
           <img src="/images/centrPred3.png" />
           <span>Карасова Джамиля Иссаевна</span>
           <span>Начальник центра инноваций социальной сферы</span>
-        </div>
+        </div> */}
         <div className={classes.containerRight}>
           <img src="/images/CentrInnov2.png" />
           <span>Центр инноваций социальной сферы</span>
