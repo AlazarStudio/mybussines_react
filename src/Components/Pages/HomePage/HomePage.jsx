@@ -30,6 +30,7 @@ function HomePage({ children, ...props }) {
           <Container2 /> {/* Квардатики центры поодержки */}
           <Container3 /> {/* Меры поддержки */}
           <Container4 /> {/* СВО */}
+          
           <Container5 /> {/* Последние новости */}
           <Container7 /> {/* Популярные услуги */}
           <Container6 /> {/* Свайпер МСП */}

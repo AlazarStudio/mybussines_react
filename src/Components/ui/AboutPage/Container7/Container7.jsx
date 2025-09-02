@@ -155,7 +155,7 @@ function Container7({ children, ...props }) {
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
-              <div className={classes.container7Card}>
+              {/* <div className={classes.container7Card}>
                 <img src="/images/tekeeva11.jpg" />
                 <span>Текеева Зухра Ансаровна</span>
                 <span>
@@ -164,7 +164,7 @@ function Container7({ children, ...props }) {
                 </span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
-              </div>
+              </div> */}
             </div>
             <div className={classes.container7Button}>
               {' '}
@@ -183,7 +183,7 @@ function Container7({ children, ...props }) {
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
               </div>
-              <div className={classes.container7Card}>
+              {/* <div className={classes.container7Card}>
                 <img src="/images/podsvirova11.jpg" />
                 <span>Подсвирова Наталья Павловна</span>
                 <span>
@@ -191,7 +191,7 @@ function Container7({ children, ...props }) {
                 </span>
                 <span>reception@moibiz09.ru</span>
                 <span>8 (8782) 25-02-27</span>
-              </div>
+              </div> */}
             </div>
             <div className={classes.container7Button}>
               {' '}

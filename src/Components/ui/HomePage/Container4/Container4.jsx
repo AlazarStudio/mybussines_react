@@ -16,32 +16,38 @@ function Container4({ children, ...props }) {
   return (
     <>
       <div className={classes.container}>
-        <a href="https://www.kchr.ru/svo/" className={classes.one}>
-          {' '}
-          <img src="/images/bannerSVO.webp" />
-        </a>
-        <a
-          href="https://www.cci.by/uslugi/marketingovaya-i-informatsionnaya-podderzhka/biznes-informatsiya/"
-          className={classes.two}
-        >
-          {' '}
-          <img src="/images/banner_tpp2.webp" />
-        </a>
-      </div>
-      <div className={classes.container2}>
-        <div className={classes.containerPdf}>
-          <span>Каталог производителей Карачаево-Черкесской Республики</span>
-          <div className={classes.containerPdfBottom}>
-            <span>Посмотреть / Скачать</span>
-            <div className={classes.buttons}>
-              <button onClick={handleOpenRu} className={classes.downloadBtn}>
-                РУС
-              </button>
-              <button onClick={handleOpenEng} className={classes.downloadBtn}>
-                ENG
-              </button>
+        <div className={classes.containerBlock}>
+          <a href="https://www.kchr.ru/svo/" className={classes.one}>
+            {' '}
+            <img src="/images/bannerSVO.webp" />
+          </a>
+          <a
+            href="https://www.cci.by/uslugi/marketingovaya-i-informatsionnaya-podderzhka/biznes-informatsiya/"
+            className={classes.two}
+          >
+            {' '}
+            <img src="/images/banner_tpp2.webp" />
+          </a>
+        </div>
+
+        <div className={classes.container2}>
+          <div className={classes.containerPdf}>
+            <span>Каталог производителей Карачаево-Черкесской Республики</span>
+            <div className={classes.containerPdfBottom}>
+              <span>Посмотреть / Скачать</span>
+              <div className={classes.buttons}>
+                <button onClick={handleOpenRu} className={classes.downloadBtn}>
+                  РУС
+                </button>
+                <button onClick={handleOpenEng} className={classes.downloadBtn}>
+                  ENG
+                </button>
+              </div>
             </div>
           </div>
+          <a href="https://xn--80aaapecta3abbflycnd5byo.xn--p1ai/?utm_source=kchr&utm_medium=web&utm_campaign=regions">
+            <img src="../images/banner3.jpg" className={classes.banner3} />
+          </a>
         </div>
       </div>
     </>
