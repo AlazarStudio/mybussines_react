@@ -21,7 +21,6 @@
   transform: scale(1.2); /* можно слегка увеличить */
 }
 
-
 .slide {
   display: flex;
   justify-content: center;
@@ -44,6 +43,12 @@
 
 .slide1 img {
   border-radius: 30px;
+}
+
+.imgLider {
+  width: 600px;
+  border-radius: 0 50% 50% 0 !important;
+  object-fit: cover;
 }
 
 .slide1Left {
@@ -102,7 +107,6 @@
     height: 406px; /* или любой другой размер */
     border-radius: 10px; /* Закругленные углы */
     overflow: hidden; /* Если изображения выходят за пределы */
-
   }
 
   .slide1 {
@@ -112,8 +116,6 @@
     border-radius: 30px;
     padding: 10px 0 10px 0;
     background-color: #fefefe;
-  
-
   }
 
   .slide1 img {

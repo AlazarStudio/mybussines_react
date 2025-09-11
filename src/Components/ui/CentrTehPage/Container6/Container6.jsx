@@ -22,17 +22,17 @@ function Container6({ children, ...props }) {
               </span>
               <span>
                 <img src="/images/CentrInnov5.png" />
-                369000, г.Черкесск, ул. Ленина, д. 53
+               Адрес: 369000, г. Черкесск, площадь Кирова, 19Б.
               </span>
               <span>
                 <img src="/images/CentrInnov6.png" />
-                reception@businesskchr.ru
+                reception@moibiz09.ru
               </span>
 
-              <span>
+              {/* <span>
                 <img src="/images/CentrInnov7.png" />
                 reception@businesskchr.ru
-              </span>
+              </span> */}
             </div>
           </div>
         </WidthBlock>

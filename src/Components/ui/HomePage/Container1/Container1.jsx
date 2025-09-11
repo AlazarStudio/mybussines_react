@@ -106,7 +106,7 @@ function Container1({ children, ...props }) {
           </SwiperSlide>
           <SwiperSlide className={classes.slide}>
             <div className={classes.slide1}>
-              <img src="/images/bb5.png" />
+              <img src="/images/lider.jpg" className={classes.imgLider} />
               <div className={classes.slide1Left}>
                 <span>Центр молодежного инновационного творчества</span>
                 <span>

@@ -10,12 +10,12 @@ function Container1({ children, ...props }) {
     <>
       <div className={classes.container}>
         <div className={classes.containerLeft}>
-          <img src="/images/teh1.png" />
+          <img src="/images/lider.jpg" />
         </div>
         <div className={classes.containerRight}>
-          <img src="/images/teh2.png" />
+          {/* <img src="/images/teh2.png" /> */}
           <span>
-            Центр молодежных инновационных технологий «Тетра» г. Черкесск
+            Центр молодежных инновационных технологий «ЛИДЕР» г. Черкесск
           </span>
           <span>
             Проект направлен на создание в г. Черкесск и в г. Карачаевске Центра

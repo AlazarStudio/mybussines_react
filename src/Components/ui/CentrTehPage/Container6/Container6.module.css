@@ -35,8 +35,11 @@
 
 .containerRight span {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
+
+
 
 .containerRight span:nth-of-type(1) {
 }

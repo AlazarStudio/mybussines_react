@@ -82,7 +82,7 @@
   color: #562211;
   margin-left: 20px;
   margin-right: 20px;
-  height: 96px;
+  height: 99px;
   display: -webkit-box; /* Гибкая коробка для текста */
   -webkit-line-clamp: 4; /* Количество строк до обрезания */
   -webkit-box-orient: vertical;

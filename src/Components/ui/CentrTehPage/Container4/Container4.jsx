@@ -12,44 +12,60 @@ function Container4({ children, ...props }) {
       <CenterBlock>
         <WidthBlock>
           <div className={classes.title}>
-            <span>Образовательные курсы</span>
+            <span>
+              Обучение детей до 18 лет в объединениях дополнительного
+              образования:
+            </span>
           </div>
           <div className={classes.container}>
             <div className={classes.containerCard}>
-              <img src="/images/cmm1.png" />
-              <span>Рисование и моделирование</span>
-            </div>
-            <div className={classes.containerCard}>
               <img src="/images/cmm2.png" />
-              <span>Векторная графика</span>
-            </div>
-            <div className={classes.containerCard}>
-              <img src="/images/cmm3.png" />
-              <span>3D-прототипирование</span>
-            </div>
-            <div className={classes.containerCard}>
-              <img src="/images/cmm4.png" />
-              <span>3D-моделирование</span>
-            </div>
-            <div className={classes.containerCard}>
-              <img src="/images/cmm5.png" />
-              <span>Пилотирование беспилотных летательных аппаратов</span>
-            </div>
-            <div className={classes.containerCard}>
-              <img src="/images/cmm6.png" />
-              <span>Программирования Ардуино (Arduino)</span>
-            </div>
-            <div className={classes.containerCard}>
-              <img src="/images/cmm7.png" />
-              <span>Программирование WEB-сайтов</span>
+              <span>Графический дизайн</span>
+              <span>
+                <a href="https://vk.com/club223733508 ">Подробнее </a>
+              </span>
             </div>
             <div className={classes.containerCard}>
               <img src="/images/cmm8.png" />
-              <span>Робототехника LEGO EV3</span>
+              <span>Робототехника</span>
+              <span>
+                <a href="https://vk.com/roboland_kchr ">Подробнее </a>
+              </span>
             </div>
             <div className={classes.containerCard}>
-              <img src="/images/cmm9.png" />
-              <span>Фото и видео монтаж</span>
+              <img src="/images/cmm6.png" />
+              <span>Искусственный интеллект</span>
+              <span>
+                <a href="https://vk.com/club227960953">Подробнее </a>
+              </span>
+            </div>
+            {/* <div className={classes.containerCard}>
+              <img src="/images/cmm3.png" />
+              <span>3D-прототипирование</span>
+            </div> */}
+            <div className={classes.containerCard}>
+              <img src="/images/cmm4.png" />
+              <span>Лазерная обработка</span>
+              <span>
+                <a href="https://vk.com/public221133450">Подробнее </a>
+              </span>
+            </div>
+            {/* <div className={classes.containerCard}>
+              <img src="/images/cmm5.png" />
+              <span>Пилотирование беспилотных летательных аппаратов</span>
+            </div> */}
+
+            <div className={classes.containerCard}>
+              <img src="/images/cmm7.png" />
+              <span>Программирование приложений</span>
+              <span>
+                <a href="https://vk.com/chagarova.program">Подробнее </a>
+              </span>
+            </div>
+
+            <div className={classes.containerCard}>
+              <img src="/images/cmm1.png" />
+              <span>Иллюстрация и 2d анимация</span>
             </div>
           </div>
         </WidthBlock>

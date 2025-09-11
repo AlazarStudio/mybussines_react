@@ -127,7 +127,8 @@ function Container7() {
       <CenterBlock>
         <WidthBlock>
           <div className={classes.title}>
-            <span>Популярные услуги</span>
+            <span>Услуги</span>
+            {/* <span>Популярные услуги</span> */}
             <button onClick={() => navigate('/service')}>Смотреть все</button>
           </div>
 
