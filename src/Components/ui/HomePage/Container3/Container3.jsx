@@ -12,10 +12,10 @@ function Container3({ children, ...props }) {
         <WidthBlock>
           <div className={classes.title}>Меры поддержки</div>
           <div className={classes.container}>
-            <div className={classes.containerEl} onClick={() => navigate('/samozanyatyi')}>
+            <div className={classes.containerEl} onClick={() => navigate('/supportSVO')}>
               <img src="/images/backRock.png" />
-              <img src="/images/smilePepople1.png" />
-              <span>Самозанятому</span>
+              <img src="/images/png_svo11.png" />
+              <span>Поддержка участников СВО</span>
             </div>
             <div className={classes.containerEl} onClick={() => navigate('/predprinimatel')}>
               <img src="/images/backRock.png" />

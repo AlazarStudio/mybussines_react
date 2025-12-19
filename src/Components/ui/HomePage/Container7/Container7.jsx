@@ -106,9 +106,28 @@ function Container7() {
         const serviceData = await response.json();
 
         // Если есть поле `date`, сортируем по убыванию и берём последние 6
-        const sorted = serviceData
+        const EXCLUDED_IDS = new Set([
+          '53',
+          '54',
+          '55',
+          '56',
+          '57',
+          '58',
+          '59',
+          '60',
+          '61',
+          '62',
+          '63',
+          '64',
+        ]);
+        const getId = (x) => String(x?.id ?? x?._id ?? '');
+
+        const filtered = serviceData.filter(
+          (el) => !EXCLUDED_IDS.has(getId(el))
+        );
+        const sorted = filtered
           .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .slice(0, 6); // <- последние 6 (по новым)
+          .slice(0, 6);
 
         setServicesList(sorted);
       } catch (err) {

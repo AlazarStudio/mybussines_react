@@ -130,41 +130,43 @@ function Container4({ children, ...props }) {
             <div className={classes.title}>
               Услуги Центра поддержки экспорта
             </div>
-            {services.map((el) => (
-              <div
-                className={classes.containerCard}
-                onMouseEnter={() => setHovered(el.id)}
-                onMouseLeave={() => setHovered(null)}
-                key={el.id}
-              >
-                <img
-                  src={`${uploadsConfig}${el.img[0]}`}
-                  className={classes.containerCardImg}
-                />
-                <img src="/images/roket.png" />
-                <img src="/images/orangeSer.png" />
-                <div className={classes.containerCardBottom}>
-                  <span>{el.title}</span>
-                  <span
-                    className={classes.readMore}
-                    onClick={() =>
-                      navigate(
-                        `/service/${encodeURIComponent(slugify(el.title))}`
-                      )
-                    }
-                  >
-                    <img
-                      src={
-                        hovered === el.id
-                          ? '/images/Group16.svg'
-                          : '/images/Group 15.svg'
+            <div className={classes.cards}>
+              {services.map((el) => (
+                <div
+                  className={classes.containerCard}
+                  onMouseEnter={() => setHovered(el.id)}
+                  onMouseLeave={() => setHovered(null)}
+                  key={el.id}
+                >
+                  <img
+                    src={`${uploadsConfig}${el.img[0]}`}
+                    className={classes.containerCardImg}
+                  />
+                  <img src="/images/roket.png" />
+                  <img src="/images/orangeSer.png" />
+                  <div className={classes.containerCardBottom}>
+                    <span>{el.title}</span>
+                    <span
+                      className={classes.readMore}
+                      onClick={() =>
+                        navigate(
+                          `/service/${encodeURIComponent(slugify(el.title))}`
+                        )
                       }
-                      alt="Подробнее"
-                    />
-                  </span>
+                    >
+                      <img
+                        src={
+                          hovered === el.id
+                            ? '/images/Group16.svg'
+                            : '/images/Group 15.svg'
+                        }
+                        alt="Подробнее"
+                      />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </WidthBlock>
       </CenterBlock>

@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
+  gap: 18px;
   /* outline: 3px solid red; */
 }
 
@@ -30,10 +30,16 @@
   cursor: pointer !important;
 }
 
-.containerLeftLogo img {
-  width: 165px;
+.containerLeftLogo {
+  width: 100px;
   height: 41px;
+}
 
+.containerLeftLogo1 {
+  width: 80px;
+  height: 40px;
+  margin-left: -10px;
+  /* outline: 1px solid red; */
 }
 
 .containerLeft button {
@@ -87,7 +93,7 @@
   height: 35px;
   font-size: 12px;
   font-weight: 500;
-  background-color: #C39367;
+  background-color: #c39367;
   border-radius: 20px;
   border: none;
   text-decoration: none;
@@ -96,8 +102,8 @@
 }
 
 .containerRight a:hover {
-background-color: #ed5338;
-color: #fff;
+  background-color: #ed5338;
+  color: #fff;
 }
 
 .dropdownMenu {
@@ -109,9 +115,7 @@ color: #fff;
   width: 250px;
   max-height: 300px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-
 }
-
 
 .modalBox {
   position: fixed;
@@ -119,7 +123,7 @@ color: #fff;
   max-width: 250px;
   background: white;
   border-radius: 20px;
-outline: 1px solid red;
+  outline: 1px solid red;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -132,7 +136,6 @@ outline: 1px solid red;
   z-index: 9999;
   /* background: rgba(0, 0, 0, 0.5); */
 }
-
 
 .modalNav ul {
   display: flex;
@@ -157,7 +160,6 @@ outline: 1px solid red;
   color: #ed5338;
 }
 
-
 @media (max-width: 768px) {
   .container {
     display: flex;
@@ -181,9 +183,16 @@ outline: 1px solid red;
     /* outline: 3px solid red; */
   }
 
-  .containerLeftLogo img {
-    width: 165px;
+  .containerLeftLogo {
+    width: 100px;
     height: 41px;
+  }
+
+  .containerLeftLogo1 {
+    width: 80px;
+    height: 41px;
+    margin-left: -70px;
+    /* outline: 1px solid red; */
   }
 
   .containerLeft button {
@@ -216,16 +225,15 @@ outline: 1px solid red;
   }
 
   .dropdownMenu {
-  position: absolute;
-  background: white;
-  border-radius: 20px;
-  top: 60px;
-  left: 128px !important;
-  width: 250px;
-  max-height: 300px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-
-}
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    top: 60px;
+    left: 128px !important;
+    width: 250px;
+    max-height: 300px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  }
 
   .modalBox {
     position: fixed;

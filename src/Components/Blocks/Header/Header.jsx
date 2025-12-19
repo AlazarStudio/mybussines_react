@@ -69,8 +69,14 @@ function Header() {
             {/* Логотип и кнопка меню */}
             <div className={classes.containerLeft}>
               <img
-                src="/images/logo.png"
+                src="/images/logo1.png"
                 className={classes.containerLeftLogo}
+                alt="Logo"
+                onClick={() => navigate('/')}
+              />
+              <img
+                src="/images/ekonomika1.png"
+                className={classes.containerLeftLogo1}
                 alt="Logo"
                 onClick={() => navigate('/')}
               />

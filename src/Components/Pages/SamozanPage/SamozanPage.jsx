@@ -3,7 +3,6 @@ import classes from './SamozanPage.module.css';
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
 import { useLocation, useNavigate } from 'react-router-dom';
-// import { supports } from '../../../../bd';
 import Bid from '../../ui/Bid/Bid';
 import serverConfig from '../../../serverConfig';
 import uploadsConfig from '../../../uploadsConfig';
@@ -78,10 +77,9 @@ export function slugify(title) {
     я: 'ya',
     ' ': '-',
     ',': '',
-    '%': '', // <- удаляем запятые и проценты из slug
+    '%': '',
   };
-
-  return title
+  return String(title || '')
     .replaceAll('«', '')
     .replaceAll('»', '')
     .replace(/\s+/g, ' ')
@@ -93,68 +91,55 @@ export function slugify(title) {
 
 function SamozanPage({ children, ...props }) {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(0);
+  const location = useLocation();
 
-    const location = useLocation();
+  const [supports, setSupports] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [hoveredId, setHoveredId] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]); // скролл вверх при изменении маршрута
-  
-    const [supports, setSupports] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        setLoading(true);
-        try {
-          const response = await fetch(`${serverConfig}/supports`);
-          const supportsData = await response.json();
-  
-          // ✅ Фильтруем только
-          const filteredSupports = supportsData.filter((support) =>
-            support.tags?.some((tag) => tag.title === 'Самозанятому')
-          );
-  
-          setSupports(filteredSupports);
-        } catch (err) {
-          console.error('Ошибка загрузки данных:', err);
-          setError('Ошибка загрузки данных');
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
-    }, []);
-  
-    // const handlePageClick = (data) => {
-    //   setCurrentPage(data.selected);
-    // };
-    // console.log(123, news);
-    // const offset = currentPage * itemsPerPage;
-    // const currentNews = news.slice(offset, offset + itemsPerPage);
-  
-    // const handleNewsClick = (id) => {
-    //   navigate(`/news/${id}`); // Перенаправляем на страницу с деталями новости
-    // };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`${serverConfig}/services`);
+        const data = await res.json();
+        const raw = Array.isArray(data) ? data : [];
+
+        // допускаем только нужные id в заданном порядке
+        const ALLOWED = [53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64];
+        const orderIndex = new Map(ALLOWED.map((id, i) => [id, i]));
+        const filteredSorted = raw
+          .filter((s) => ALLOWED.includes(s.id))
+          .sort((a, b) => orderIndex.get(a.id) - orderIndex.get(b.id));
+
+        setSupports(filteredSorted);
+      } catch (e) {
+        console.error('Ошибка загрузки данных:', e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className={classes.containerTop}>
-        {/* <img src="/images/samozan1.png" className={classes.img1} /> */}
         <CenterBlock>
           <WidthBlock>
             <div className={classes.container}>
-              {' '}
               <div className={classes.containerText}>
-                <span>КАК СТАТЬ САМОЗАНЯТЫМ</span>
-                <span>Построить бизнес просто — стань самозанятым</span>
+                <span>ПОДДЕРЖКА УЧАСТНИКОВ СВО</span>
+                {/* <span>Построить бизнес просто — стань самозанятым</span> */}
                 <button onClick={() => navigate('/contacts#bid')}>
                   Записаться на консультацию
                 </button>
               </div>
-              <img src="/images/samozan2.png" />
+              <img src="/images/svo111.jpg" alt="" />
             </div>
           </WidthBlock>
         </CenterBlock>
@@ -165,26 +150,68 @@ function SamozanPage({ children, ...props }) {
           <div className={classes.title}>
             <span>Меры поддержки</span>
           </div>
-          <div className={classes.container1}>
-            {supports.map((support) => (
+
+          {/* карточки как делали выше (ракета + оверлей) */}
+          <div className={classes.srvGrid}>
+            {!loading && supports.length === 0 && (
+              <div className={classes.empty}>Пока нет услуг.</div>
+            )}
+
+            {supports.map((el) => (
               <div
-                className={classes.containerGroupContentCard}
-                key={support.id}
+                key={el.id}
+                className={classes.srvCard}
+                onMouseEnter={() => setHoveredId(el.id)}
+                onMouseLeave={() => setHoveredId(null)}
               >
-                <img src={`${uploadsConfig}${support.img[0]}`} />
-                <span>{support.title}</span>
-                <span
-                  onClick={() =>
-                    navigate(
-                      `/supports/${encodeURIComponent(slugify(support.title))}`
-                    )
-                  }
-                >
-                  Узнать больше
-                </span>
+                {/* 1) картинка услуги (иконка/логотип) */}
+                {el?.img?.[0] && (
+                  <img
+                    src={`${uploadsConfig}${el.img[0]}`}
+                    className={classes.srvCardImg}
+                    alt={el.title}
+                  />
+                )}
+
+                {/* 2) фон-ракета справа */}
+                <img
+                  src="/images/roket.png"
+                  alt=""
+                  className={classes.srvCardBgRocket}
+                />
+
+                {/* 3) оранжевый оверлей слева (анимация при ховере) */}
+                <img
+                  src="/images/orangeSer.png"
+                  alt=""
+                  className={classes.srvCardBgOrange}
+                />
+
+                <div className={classes.srvCardBottom}>
+                  <span className={classes.srvTitle}>{el.title}</span>
+                  <span
+                    className={classes.srvMoreLink}
+                    onClick={() =>
+                      navigate(
+                        `/service/${encodeURIComponent(slugify(el.title))}`
+                      )
+                    }
+                  >
+                    <img
+                      src={
+                        hoveredId === el.id
+                          ? '/images/Group16.svg'
+                          : '/images/Group 15.svg'
+                      }
+                      alt="Подробнее"
+                      className={classes.srvMoreIcon}
+                    />
+                  </span>
+                </div>
               </div>
             ))}
           </div>
+
           <Bid />
         </WidthBlock>
       </CenterBlock>

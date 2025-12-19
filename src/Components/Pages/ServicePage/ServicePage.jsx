@@ -8,6 +8,23 @@ import uploadsConfig from '../../../uploadsConfig';
 
 const ITEMS_PER_PAGE = 12;
 
+// ❌ Какие id скрывать
+const EXCLUDED_IDS = new Set([
+  '53',
+  '54',
+  '55',
+  '56',
+  '57',
+  '58',
+  '59',
+  '60',
+  '61',
+  '62',
+  '63',
+  '64',
+]);
+const getId = (x) => String(x?.id ?? x?._id ?? '');
+
 export function slugify(title) {
   const map = {
     А: 'A',
@@ -78,7 +95,7 @@ export function slugify(title) {
     я: 'ya',
     ' ': '-',
     ',': '',
-    '%': '', // <- удаляем запятые и проценты из slug
+    '%': '',
   };
 
   return title
@@ -91,21 +108,20 @@ export function slugify(title) {
     .join('');
 }
 
-function ServicePage({ children, ...props }) {
+function ServicePage() {
   const navigate = useNavigate();
-
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]); // скролл вверх при изменении маршрута
+  }, [location.pathname]);
 
   const [service, setService] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState(''); // 🔍 Введённый текст
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(''); // 🔄 Дебаунс строка
-  const [hovered, setHovered] = useState(null); // Состояние для hover
+  const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
+  const [hovered, setHovered] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const cardsRef = useRef(null);
 
@@ -114,8 +130,15 @@ function ServicePage({ children, ...props }) {
       setLoading(true);
       try {
         const response = await fetch(`${serverConfig}/services`);
-        const servicesData = await response.json();
-        setService(servicesData);
+        if (!response.ok) throw new Error(`Ошибка ${response.status}`);
+        const raw = await response.json();
+        const servicesData = Array.isArray(raw) ? raw : [];
+
+        // 🔒 Сразу выкидываем запрещённые id из состояния
+        const cleaned = servicesData.filter(
+          (el) => !EXCLUDED_IDS.has(getId(el))
+        );
+        setService(cleaned);
       } catch (err) {
         console.error('Ошибка загрузки данных:', err);
         setError('Ошибка загрузки данных');
@@ -123,27 +146,25 @@ function ServicePage({ children, ...props }) {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
-  // ⏳ Дебаунс-функция: обновляет `debouncedSearchQuery` через 500 мс после ввода
+  // Дебаунс поиска
   useEffect(() => {
-    const handler = setTimeout(() => {
+    const t = setTimeout(() => {
       setDebouncedSearchQuery(searchQuery);
       setCurrentPage(1);
-    }, 500); // ⏳ Задержка в 500 мс
-
-    return () => clearTimeout(handler); // 🚀 Очистка таймера при новом вводе
+    }, 500);
+    return () => clearTimeout(t);
   }, [searchQuery]);
 
-  // 🔍 Фильтрация списка сервисов по `debouncedSearchQuery`
+  // Фильтрация по запросу
   const filteredServices = service.filter((el) =>
-    el.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+    el.title?.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredServices.length / ITEMS_PER_PAGE);
-  const paginatedNews = filteredServices.slice(
+  const paginated = filteredServices.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
@@ -157,8 +178,8 @@ function ServicePage({ children, ...props }) {
   function getPaginationRange(current, total) {
     const delta = 2;
     const range = [];
-    const rangeWithDots = [];
-    let l;
+    const out = [];
+    let last;
 
     for (let i = 1; i <= total; i++) {
       if (
@@ -170,19 +191,15 @@ function ServicePage({ children, ...props }) {
       }
     }
 
-    for (let i of range) {
-      if (l) {
-        if (i - l === 2) {
-          rangeWithDots.push(l + 1);
-        } else if (i - l > 2) {
-          rangeWithDots.push('...');
-        }
+    for (const i of range) {
+      if (last) {
+        if (i - last === 2) out.push(last + 1);
+        else if (i - last > 2) out.push('...');
       }
-      rangeWithDots.push(i);
-      l = i;
+      out.push(i);
+      last = i;
     }
-
-    return rangeWithDots;
+    return out;
   }
 
   return (
@@ -190,37 +207,40 @@ function ServicePage({ children, ...props }) {
       <CenterBlock>
         <WidthBlock>
           <div ref={cardsRef} className={classes.input}>
-            {/* 🔍 Поле ввода с дебаунсом */}
             <input
               type="text"
               placeholder="Найти..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className={classes.searchInput} // Можно стилизовать
+              className={classes.searchInput}
             />
-            {filteredServices.length > 0 && (
+            {filteredServices.length > 0 ? (
               <span className={classes.searchCount}>
                 Найдено: {filteredServices.length}
               </span>
-            )}
-            {filteredServices.length === 0 && (
+            ) : (
               <span className={classes.searchCount}>Ничего не найдено</span>
             )}
           </div>
-          <div  className={classes.container}>
+
+          {loading && <p>Загрузка...</p>}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+
+          <div className={classes.container}>
             {filteredServices.length > 0 ? (
               <>
-                {paginatedNews.map((el) => (
+                {paginated.map((el) => (
                   <div
                     className={classes.containerCard}
-                    onMouseEnter={() => setHovered(el.id)}
+                    onMouseEnter={() => setHovered(getId(el))}
                     onMouseLeave={() => setHovered(null)}
-                    key={el.id}
+                    key={getId(el)}
                   >
                     <img
-                      src={`${uploadsConfig}${el.img[0]}`}
+                      src={`${uploadsConfig}${el?.img?.[0] || ''}`}
                       className={classes.containerCardImg}
                       alt={el.title}
+                      loading="lazy"
                     />
                     <img src="/images/roket.png" alt="Ракета" />
                     <img src="/images/orangeSer.png" alt="Оранжевый сервис" />
@@ -236,7 +256,7 @@ function ServicePage({ children, ...props }) {
                       >
                         <img
                           src={
-                            hovered === el.id
+                            hovered === getId(el)
                               ? '/images/Group16.svg'
                               : '/images/Group 15.svg'
                           }
@@ -247,23 +267,20 @@ function ServicePage({ children, ...props }) {
                   </div>
                 ))}
 
-                {/* ✅ Пагинация — отдельно от map */}
                 {totalPages > 1 && (
                   <div className={classes.pagination}>
                     <button
                       className={classes.pageButton}
-                      onClick={() =>
-                        setCurrentPage((prev) => Math.max(1, prev - 1))
-                      }
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                       disabled={currentPage === 1}
                     >
                       &lt;
                     </button>
                     {getPaginationRange(currentPage, totalPages).map(
-                      (page, index) =>
+                      (page, idx) =>
                         page === '...' ? (
                           <span
-                            key={`ellipsis-${index}`}
+                            key={`ellipsis-${idx}`}
                             className={classes.ellipsis}
                           >
                             ...
@@ -284,7 +301,7 @@ function ServicePage({ children, ...props }) {
                     <button
                       className={classes.pageButton}
                       onClick={() =>
-                        setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                        setCurrentPage((p) => Math.min(totalPages, p + 1))
                       }
                       disabled={currentPage === totalPages}
                     >
@@ -294,7 +311,7 @@ function ServicePage({ children, ...props }) {
                 )}
               </>
             ) : (
-              <p className={classes.noResults}>Ничего не найдено</p>
+              !loading && <p className={classes.noResults}>Ничего не найдено</p>
             )}
           </div>
         </WidthBlock>

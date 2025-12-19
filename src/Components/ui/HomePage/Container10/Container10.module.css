@@ -1,0 +1,125 @@
+.containerBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 40px;
+  margin-top: -40px;
+  margin-bottom: -40px;
+  /* border: 1px solid #70707000 !important; */
+  /* outline: 1px solid red; */
+}
+
+.containerBlockEl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 49%;
+  /* border: 1px solid rgb(80, 63, 31); */
+  border-radius: 20px;
+  height: 200px;
+  background-color: #fff;
+  /* padding: 15px 30px; */
+}
+
+.containerBlockElLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 30px;
+  padding: 10px 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.containerBlockEl a {
+  all: unset; /* сбросить ВСЕ заданные стили */
+  display: inline; /* вернуть привычный поток */
+  color: inherit; /* унаследовать цвет текста */
+  cursor: pointer; /* оставить курсор-руку */
+  text-decoration: none;
+}
+
+.containerBlockEl a:nth-of-type(1) span {
+  font-size: 18px;
+  font-weight: 600 !important;
+}
+
+.containerBlockEl a:nth-of-type(2) span {
+  font-size: 18px;
+  font-weight: 600 !important;
+  color: #15b82b;
+}
+
+.containerBlockEl img {
+  width: 30%;
+  height: 100%;
+  border-radius: 0 20px 20px 0;
+  padding-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .containerBlock {
+    flex-direction: column;
+    padding: 10px !important;
+    gap: 20px;
+      margin-top: -10px;
+  margin-bottom: -20px;
+  }
+
+  .containerBlockEl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /* border: 1px solid rgb(80, 63, 31); */
+    border-radius: 20px;
+    height: 150px;
+    background-color: #fff;
+    /* padding: 15px 30px; */
+  }
+
+  .containerBlockElLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    gap: 15px;
+    padding: 10px 20px;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .containerBlockEl a {
+    all: unset; /* сбросить ВСЕ заданные стили */
+    display: inline; /* вернуть привычный поток */
+    color: inherit; /* унаследовать цвет текста */
+    cursor: pointer; /* оставить курсор-руку */
+    text-decoration: none;
+  }
+
+  .containerBlockEl a:nth-of-type(1) span {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+
+  .containerBlockEl a:nth-of-type(2) span {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #15b82b;
+  }
+
+  .containerBlockEl img {
+    width: 30%;
+    height: 100%;
+    border-radius: 0 20px 20px 0;
+    padding-top: 10px;
+  }
+}

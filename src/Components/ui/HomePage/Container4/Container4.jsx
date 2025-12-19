@@ -45,6 +45,15 @@ function Container4({ children, ...props }) {
               </div>
             </div>
           </div>
+          <div className={classes.container3}>
+            <a href="https://креативныйкод.рф/ ">
+              <img src="../images/creativ1.jpg" />
+            </a>
+
+            <a href="https://бизнесмарафон.рф/ ">
+              <img src="../images/creativ111.jpg" />
+            </a>
+          </div>
           <a href="https://xn--80aaapecta3abbflycnd5byo.xn--p1ai/?utm_source=kchr&utm_medium=web&utm_campaign=regions">
             <img src="../images/banner3.jpg" className={classes.banner3} />
           </a>

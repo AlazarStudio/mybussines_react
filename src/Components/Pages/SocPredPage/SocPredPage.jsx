@@ -263,7 +263,6 @@ const CODES_FOR_49 = [
 const isGroup = (code) => code.split('.').length === 2;
 const matchOkved = (codes, selected) =>
   codes?.some((c) => c === selected || c.startsWith(`${selected}.`));
-
 function getOkvedCodes(support) {
   if (Array.isArray(support?.okvedCodes)) return support.okvedCodes;
   const fromTags = Array.isArray(support?.tags)
@@ -273,6 +272,40 @@ function getOkvedCodes(support) {
     : [];
   return fromTags;
 }
+
+// нормализация поиска
+const norm = (s) =>
+  String(s || '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+const okvedMatches = (item, q) =>
+  item.code.toLowerCase().includes(q) || norm(item.label).includes(q);
+
+// русская плюрализация
+function pluralize(n, one, few, many) {
+  const mod10 = n % 10,
+    mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return one;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
+  return many;
+}
+
+// --- helper: подсветка совпадения в тексте ---
+const highlight = (text, q) => {
+  const t = String(text);
+  const n = norm(t);
+  const qn = norm(q);
+  const idx = n.indexOf(qn);
+  if (!qn || idx === -1) return t;
+  return (
+    <>
+      {t.slice(0, idx)}
+      <mark>{t.slice(idx, idx + q.length)}</mark>
+      {t.slice(idx + q.length)}
+    </>
+  );
+};
 
 function SocPredPage() {
   const navigate = useNavigate();
@@ -291,10 +324,25 @@ function SocPredPage() {
   const initialSelected = urlOkved && !isGroup(urlOkved) ? urlOkved : '';
   const [selectedOkved, setSelectedOkved] = useState(initialSelected);
 
-  // раскрытая группа (строго одна)
-  const [expanded, setExpanded] = useState(() =>
+  // раскрытая группа (одна за раз)
+  const [expanded, setExpanded] = useState(
     urlOkved ? urlOkved.split('.').slice(0, 2).join('.') : null
   );
+
+  // --- Поиск по ОКВЭД ---
+  const [query, setQuery] = useState('');
+  // результаты блока "Результаты"
+  const [combinedResults, setCombinedResults] = useState([]);
+
+  // --- НОВОЕ: автоподсказки ---
+  const suggestWrapRef = useRef(null);
+  const [suggestions, setSuggestions] = useState([]); // плоский список {type, code, label, parent?}
+  const [isSuggestOpen, setSuggestOpen] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(-1);
+
+  // показываем ТОЛЬКО эти услуги:
+  const ALLOWED_IDS = [35, 34, 33, 32, 30, 29, 28, 27, 26, 23, 21, 44, 45, 49];
+  const orderIndex = new Map(ALLOWED_IDS.map((id, i) => [id, i]));
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -308,8 +356,11 @@ function SocPredPage() {
         const data = await res.json();
         const raw = Array.isArray(data) ? data : [];
 
-        // присваиваем okvedCodes
-        const withCodes = raw.map((s) =>
+        const filteredSorted = raw
+          .filter((s) => ALLOWED_IDS.includes(s.id))
+          .sort((a, b) => orderIndex.get(a.id) - orderIndex.get(b.id));
+
+        const withCodes = filteredSorted.map((s) =>
           s.id === 49
             ? { ...s, okvedCodes: CODES_FOR_49 }
             : { ...s, okvedCodes: ALL_CHILD_CODES }
@@ -325,13 +376,41 @@ function SocPredPage() {
     fetchData();
   }, []);
 
-  const handleToggleGroup = (groupCode) => {
-    setExpanded((prev) => (prev === groupCode ? null : groupCode));
-  };
+  const countByCode = (code) =>
+    supports.reduce(
+      (acc, s) => acc + (matchOkved(getOkvedCodes(s), code) ? 1 : 0),
+      0
+    );
 
+  // построим плоский индекс для подсказок
+  const FLAT_ITEMS = useMemo(() => {
+    const arr = [];
+    for (const g of OKVEDS) {
+      arr.push({
+        type: 'group',
+        code: g.code,
+        label: g.label,
+        childrenCount: g.children?.length || 0,
+      });
+      for (const c of g.children || []) {
+        arr.push({
+          type: 'child',
+          code: c.code,
+          label: c.label,
+          parent: g.code,
+        });
+      }
+    }
+    return arr;
+  }, []);
+
+  // выбор кода (группа/подпункт)
   const handleSelectOkved = (code) => {
     if (isGroup(code)) {
-      handleToggleGroup(code);
+      setExpanded((prev) => (prev === code ? null : code));
+      setSelectedOkved('');
+      setSearchParams({});
+      setSuggestOpen(false);
       return;
     }
     const next = code === selectedOkved ? '' : code;
@@ -339,14 +418,127 @@ function SocPredPage() {
     next ? setSearchParams({ okved: next }) : setSearchParams({});
     const root = code.split('.').slice(0, 2).join('.');
     setExpanded(root);
-
-    // скролл к карточкам
+    setSuggestOpen(false);
     requestAnimationFrame(() => {
       servicesRef.current?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
     });
+  };
+
+  // Поиск — группы и подпункты вместе (кнопка "Найти" или Enter без выбора)
+  const runSearch = () => {
+    const q = norm(query);
+    if (!q) {
+      setCombinedResults([]);
+      return;
+    }
+
+    // Точные совпадения — сразу действие
+    const allChildren = OKVEDS.flatMap((g) =>
+      (g.children || []).map((c) => ({ ...c, parent: g.code }))
+    );
+    const exactChild = allChildren.find((c) => c.code.toLowerCase() === q);
+    const exactGroup = OKVEDS.find((g) => g.code.toLowerCase() === q);
+
+    if (exactChild) {
+      handleSelectOkved(exactChild.code);
+      return;
+    } else if (exactGroup) {
+      setExpanded(exactGroup.code);
+      setSelectedOkved('');
+      setSearchParams({});
+    }
+
+    // Сбор объединённых результатов
+    const results = [];
+    for (const group of OKVEDS) {
+      const groupMatch = okvedMatches(group, q);
+      const childrenMatched = (group.children || []).filter((c) =>
+        okvedMatches(c, q)
+      );
+
+      if (groupMatch || childrenMatched.length) {
+        const childrenToShow =
+          childrenMatched.length > 0 ? childrenMatched : group.children || [];
+        results.push({ group, groupMatch, childrenToShow });
+      }
+    }
+    setCombinedResults(results);
+  };
+
+  // --- НОВОЕ: генерация подсказок при наборе
+  useEffect(() => {
+    const q = norm(query);
+    if (!q) {
+      setSuggestions([]);
+      setSuggestOpen(false);
+      setActiveIdx(-1);
+      return;
+    }
+
+    // приоритезируем: exact code > code startsWith > label startsWith > label includes
+    const exact = [];
+    const codeStart = [];
+    const labelStart = [];
+    const labelIncl = [];
+
+    for (const it of FLAT_ITEMS) {
+      const code = it.code.toLowerCase();
+      const label = norm(it.label);
+      if (code === q) exact.push(it);
+      else if (code.startsWith(q)) codeStart.push(it);
+      else if (label.startsWith(q)) labelStart.push(it);
+      else if (label.includes(q)) labelIncl.push(it);
+    }
+
+    const seen = new Set();
+    const merged = [];
+    for (const bucket of [exact, codeStart, labelStart, labelIncl]) {
+      for (const it of bucket) {
+        if (seen.has(it.code)) continue;
+        seen.add(it.code);
+        merged.push(it);
+      }
+    }
+
+    const limited = merged.slice(0, 12);
+    setSuggestions(limited);
+    setSuggestOpen(limited.length > 0);
+    setActiveIdx(limited.length ? 0 : -1);
+  }, [query, FLAT_ITEMS]);
+
+  // Закрытие по клику вне списка
+  useEffect(() => {
+    const onDocClick = (e) => {
+      if (!suggestWrapRef.current) return;
+      if (!suggestWrapRef.current.contains(e.target)) setSuggestOpen(false);
+    };
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, []);
+
+  // Клавиатура для инпута/подсказок
+  const onInputKeyDown = (e) => {
+    if (!isSuggestOpen || !suggestions.length) {
+      if (e.key === 'Enter') runSearch();
+      return;
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveIdx((i) => Math.min(i + 1, suggestions.length - 1));
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveIdx((i) => Math.max(i - 1, 0));
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const it = suggestions[activeIdx] || suggestions[0];
+      if (it) handleSelectOkved(it.code);
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      setSuggestOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -357,12 +549,6 @@ function SocPredPage() {
       });
     }
   }, [loading, selectedOkved]);
-
-  const countByCode = (code) =>
-    supports.reduce(
-      (acc, s) => acc + (matchOkved(getOkvedCodes(s), code) ? 1 : 0),
-      0
-    );
 
   const filteredSupports = useMemo(() => {
     if (!selectedOkved) return supports;
@@ -377,7 +563,7 @@ function SocPredPage() {
             <div className={classes.container}>
               <div className={classes.containerText}>
                 <span>
-                  Меры поддержки бизнесу в сфере легкой промышленности
+                  Меры поддержки бизнеса в сфере легкой промышленности
                 </span>
                 <button onClick={() => navigate('/contacts#bid')}>
                   Записаться на консультацию
@@ -395,75 +581,172 @@ function SocPredPage() {
             <span>Поиск и подбор услуг и мер поддержки по ОКВЭД</span>
           </div>
 
-          {/* АККОРДЕОН ОКВЭД */}
-          <div className={classes.containerMenu}>
-            {OKVEDS.map((group) => {
-              const isExpanded = expanded === group.code;
-              const childrenCount = group.children?.length || 0;
-              return (
-                <div key={group.code} className={classes.containerMenuEl}>
-                  <div className={classes.groupRow}>
-                    <button
-                      type="button"
-                      className={classes.caret}
-                      aria-label={isExpanded ? 'Свернуть' : 'Развернуть'}
-                      aria-expanded={isExpanded}
-                      onClick={() => handleToggleGroup(group.code)}
-                    />
+          {/* --- ПОИСК ПО ОКВЭД с автоподсказками --- */}
+          <div className={classes.okvedSearchBox}>
+            <div className={classes.okvedSearchInputWrap} ref={suggestWrapRef}>
+              <input
+                className={classes.okvedSearchInput}
+                type="text"
+                placeholder="Поиск по коду или названию ОКВЭД"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={onInputKeyDown}
+                onFocus={() => suggestions.length && setSuggestOpen(true)}
+                aria-autocomplete="list"
+                aria-expanded={isSuggestOpen}
+                aria-controls="okved-suggest-list"
+              />
+
+              {isSuggestOpen && suggestions.length > 0 && (
+                <ul
+                  id="okved-suggest-list"
+                  className={classes.suggestList}
+                  role="listbox"
+                >
+                  {suggestions.map((it, idx) => {
+                    const isActive = idx === activeIdx;
+                    const isChild = it.type === 'child';
+                    const servicesCount = isChild
+                      ? countByCode(it.code)
+                      : it.childrenCount ?? 0;
+                    return (
+                      <li
+                        key={it.code}
+                        role="option"
+                        aria-selected={isActive}
+                        className={`${classes.suggestItem} ${
+                          isActive ? classes.suggestActive : ''
+                        }`}
+                        onMouseEnter={() => setActiveIdx(idx)}
+                        onMouseDown={(e) => e.preventDefault()}
+                        onClick={() => handleSelectOkved(it.code)}
+                      >
+                        <div className={classes.suggestMain}>
+                          <span className={classes.suggestCode}>
+                            {/* {highlight(it.code, query)} */}
+                          </span>
+                          <span className={classes.suggestDivider}>•</span>
+                          <span className={classes.suggestLabel}>
+                            {highlight(it.label, query)}
+                          </span>
+                        </div>
+                        <div className={classes.suggestMeta}>
+                          <span
+                            className={`${classes.typeBadge} ${
+                              isChild ? classes.badgeChild : classes.badgeGroup
+                            }`}
+                          >
+                            {isChild ? 'подпункт' : 'группа'}
+                          </span>
+                          <span className={classes.suggestCount}>
+                            {isChild
+                              ? `${servicesCount} ${pluralize(
+                                  servicesCount,
+                                  'услуга',
+                                  'услуги',
+                                  'услуг'
+                                )}`
+                              : `${servicesCount} ${pluralize(
+                                  servicesCount,
+                                  'подпункт',
+                                  'подпункта',
+                                  'подпунктов'
+                                )}`}
+                          </span>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </div>
+
+            <button className={classes.okvedSearchButton} onClick={runSearch}>
+              Найти
+            </button>
+          </div>
+
+          {/* ОБЪЕДИНЁННЫЕ РЕЗУЛЬТАТЫ: группы + их подпункты */}
+          {combinedResults.length > 0 && (
+            <div className={classes.searchResults}>
+              <div className={classes.searchSectionTitle}>Результаты</div>
+              {combinedResults.map(({ group, groupMatch, childrenToShow }) => {
+                const isExpanded = expanded === group.code;
+                const childrenCount = group.children?.length || 0;
+                const showChildren =
+                  childrenToShow.length > 0 ||
+                  (groupMatch && (isExpanded || childrenCount <= 6));
+
+                const listToRender =
+                  childrenToShow.length > 0
+                    ? childrenToShow
+                    : isExpanded
+                    ? group.children || []
+                    : [];
+
+                return (
+                  <div key={group.code} className={classes.containerMenuEl}>
                     <button
                       type="button"
                       className={classes.okvedBtn}
-                      onClick={() => handleToggleGroup(group.code)}
+                      onClick={() => handleSelectOkved(group.code)}
                     >
                       <span className={classes.label}>
                         {group.label}
                         <span className={classes.countText}>
                           {' '}
                           — {childrenCount}{' '}
-                          {childrenCount === 1
-                            ? 'подпункт'
-                            : childrenCount >= 2 && childrenCount <= 4
-                            ? 'подпункта'
-                            : 'подпунктов'}
+                          {pluralize(
+                            childrenCount,
+                            'подпункт',
+                            'подпункта',
+                            'подпунктов'
+                          )}
                         </span>
                       </span>
                       <em className={classes.badge}>{childrenCount}</em>
                     </button>
-                  </div>
 
-                  {isExpanded && !!group.children?.length && (
-                    <div className={classes.childrenList}>
-                      {group.children.map((child) => {
-                        const childCount = countByCode(child.code);
-                        const childActive = selectedOkved === child.code;
-                        return (
-                          <button
-                            key={child.code}
-                            type="button"
-                            className={`${classes.okvedChildBtn} ${
-                              childActive ? classes.active : ''
-                            }`}
-                            onClick={() => handleSelectOkved(child.code)}
-                          >
-                            <span className={classes.label}>
-                              {child.label}
-                              <span className={classes.countText}>
-                                {' '}
-                                — {childCount} услуг
+                    {showChildren && listToRender.length > 0 && (
+                      <div className={classes.childrenList}>
+                        {listToRender.map((child) => {
+                          const childCount = countByCode(child.code);
+                          const childActive = selectedOkved === child.code;
+                          return (
+                            <button
+                              key={child.code}
+                              type="button"
+                              className={`${classes.okvedChildBtn} ${
+                                childActive ? classes.active : ''
+                              }`}
+                              onClick={() => handleSelectOkved(child.code)}
+                            >
+                              <span className={classes.label}>
+                                {child.label}
+                                <span className={classes.countText}>
+                                  {' '}
+                                  — {childCount}{' '}
+                                  {pluralize(
+                                    childCount,
+                                    'услуга',
+                                    'услуги',
+                                    'услуг'
+                                  )}
+                                </span>
                               </span>
-                            </span>
-                            <em className={classes.badge}>{childCount}</em>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+                              <em className={classes.badge}>{childCount}</em>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
-          {/* КАРТОЧКИ УСЛУГ (верстка из ServicePage) */}
+          {/* КАРТОЧКИ УСЛУГ (как на ServicePage) */}
           <div className={classes.srvGrid} ref={servicesRef}>
             {!loading && filteredSupports.length === 0 && (
               <div className={classes.empty}>
@@ -504,7 +787,7 @@ function SocPredPage() {
                     className={classes.srvMoreLink}
                     onClick={() =>
                       navigate(
-                        `/supports/${encodeURIComponent(slugify(el.title))}`
+                        `/service/${encodeURIComponent(slugify(el.title))}`
                       )
                     }
                   >

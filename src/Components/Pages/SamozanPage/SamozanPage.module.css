@@ -1,7 +1,8 @@
 .containerTop {
   width: 100%;
   height: 640px;
-  background-image: url('/images/samozan1.png');
+  background-color: #fff;
+  /* background-image: url('/images/samozan1.png'); */
   background-size: cover; /* Растягивает изображение на всю ширину */
   background-position: center; /* Центрирует изображение */
   background-repeat: no-repeat; /* Отключает повторение */
@@ -18,7 +19,7 @@
 .containerText {
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: #000;
   gap: 22px;
   margin-left: 152px;
   margin-top: 104px;
@@ -27,8 +28,8 @@
 .containerText span:nth-of-type(1) {
   font-size: 36px;
   font-weight: 700;
-  color: #fff;
-  width: 339px;
+  color: #000;
+  /* width: 339px; */
 }
 
 .containerText span:nth-of-type(2) {
@@ -52,10 +53,11 @@
 
 .container img {
   position: absolute;
-  width: 780px !important;
-  height: 370px;
+  width: 840px !important;
+  /* height: 370px; */
   bottom: 0;
   right: 0;
+  /* outline: 1px solid red; */
 }
 
 .title {
@@ -96,7 +98,7 @@
   padding-left: 25px;
   padding-right: 25px;
 }
-  .containerGroupContentCard {
+.containerGroupContentCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,13 +144,12 @@
   cursor: pointer;
   background-color: #ed5338;
 }
-  
 
 @media (max-width: 768px) {
   .containerTop {
     width: 100%;
     height: 100%;
-    background-image: url('/images/samozan1.png');
+    /* background-image: url('/images/samozan1.png'); */
     background-size: cover; /* Растягивает изображение на всю ширину */
     background-position: center; /* Центрирует изображение */
     background-repeat: no-repeat; /* Отключает повторение */
@@ -166,20 +167,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: #fff;
-    gap: 22px;
+    /* justify-content: center; */
+    gap: 12px;
     margin: 0;
     width: 100%;
     height: 100%;
-    padding: 40px;
+    padding: 20px;
+    color: #000;
+    z-index: 1;
   }
 
   .containerText span:nth-of-type(1) {
     font-size: 24px;
     font-weight: 700;
-    color: #fff;
+    color: #000;
     width: 100%;
+    text-align: center;
   }
 
   .containerText span:nth-of-type(2) {
@@ -192,8 +195,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 296px;
-    height: 50px;
+    width: 276px;
+    height: 35px;
     border-radius: 25px;
     background-color: #ed5338;
     color: #fff;
@@ -202,6 +205,159 @@
   }
 
   .container img {
-    display: none;
+
+    width: 360px !important;
+    /* display: none; */
+  }
+}
+
+/* === Сетка карточек услуг === */
+.srvGrid {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+  margin-top: -40px;
+}
+
+/* Карточка */
+.srvCard {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 32%;
+  height: 251px;
+  border-radius: 20px;
+  background-color: #fefefe;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+/* 1-я картинка (иконка услуги) */
+.srvCardImg {
+  display: flex;
+  width: 100px;
+  height: 104px;
+  margin: 20px;
+  z-index: 1;
+  object-fit: cover;
+}
+
+/* 2-я (ракета справа) */
+.srvCardBgRocket {
+  display: flex;
+  position: absolute;
+  right: 0;
+  height: 97%;
+  top: 0;
+}
+
+/* 3-я (оранжевый overlay слева) */
+.srvCardBgOrange {
+  display: flex;
+  position: absolute;
+  width: 290px;
+  height: 110%;
+  left: -300px;
+  top: 0;
+  transition: all ease-out 0.4s;
+}
+
+.srvCard:hover .srvCardBgOrange {
+  left: 0px;
+}
+.srvCard:hover .srvCardBottom span {
+  color: #fff;
+}
+
+/* Низ карточки */
+.srvCardBottom {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  justify-content: space-between;
+}
+
+/* Заголовок */
+.srvTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #562211;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 96px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Кнопка Подробнее (контейнер) */
+.srvMoreLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-right: 35px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+/* Иконка Подробнее */
+.srvMoreIcon {
+  width: 66px !important;
+  height: 64px !important;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+  .srvGrid {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 39px;
+    padding: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    justify-content: initial;
+  }
+
+  .srvCard {
+    width: 100%;
+    height: 201px;
+    border-radius: 20px;
+    background-color: #fefefe;
+    overflow: hidden;
+    transition: all ease-out 0.2s;
+  }
+
+  .srvCardImg {
+    width: 50px;
+    height: 59px;
+    margin: 20px;
+  }
+
+  .srvCardBgRocket {
+    right: 0;
+    height: 97%;
+  }
+  .srvCardBgOrange {
+    width: 270px;
+    height: 110%;
+    left: -280px;
+  }
+  .srvCard:hover .srvCardBgOrange {
+    left: 0px;
+  }
+
+  .srvTitle {
+    font-size: 14px;
+    height: 96px;
   }
 }

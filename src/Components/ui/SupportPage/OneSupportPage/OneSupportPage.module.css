@@ -65,6 +65,7 @@
 }
 
 .containerNews img {
+  display: none;
   margin-top: 50px;
   border-radius: 10px;
   width: 300px;

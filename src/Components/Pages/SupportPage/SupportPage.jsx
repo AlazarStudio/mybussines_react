@@ -126,7 +126,7 @@ function SupportPage({ children, ...props }) {
       </div>
       <CenterBlock>
         <WidthBlock>
-          <SupportPagePopular activeTab={activeTab} />
+          {/* <SupportPagePopular activeTab={activeTab} /> */}
         </WidthBlock>
       </CenterBlock>
       <SupportPageAll activeTab={activeTab} />

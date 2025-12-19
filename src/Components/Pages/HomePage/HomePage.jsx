@@ -12,10 +12,9 @@ import Container7 from '../../ui/HomePage/Container7/Container7';
 import Container8 from '../../ui/HomePage/Container8/Container8';
 import Container9 from '../../ui/HomePage/Container9/Container9';
 import { useLocation } from 'react-router-dom';
+import Container10 from '../../ui/HomePage/Container10/Container10';
 
 function HomePage({ children, ...props }) {
-
-
   const location = useLocation();
 
   useEffect(() => {
@@ -29,8 +28,8 @@ function HomePage({ children, ...props }) {
           <Container1 /> {/* Свайпер центры поддержки */}
           <Container2 /> {/* Квардатики центры поодержки */}
           <Container3 /> {/* Меры поддержки */}
+          <Container10 />  {/* Клуб женщин и самозянатых */}
           <Container4 /> {/* СВО */}
-          
           <Container5 /> {/* Последние новости */}
           <Container7 /> {/* Популярные услуги */}
           <Container6 /> {/* Свайпер МСП */}

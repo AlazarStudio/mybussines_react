@@ -77,83 +77,69 @@ export function slugify(title) {
     я: 'ya',
     ' ': '-',
     ',': '',
-    '%': '', // <- удаляем запятые и проценты из slug
+    '%': '',
   };
-
-  return title
+  return String(title || '')
     .replaceAll('«', '')
     .replaceAll('»', '')
     .replace(/\s+/g, ' ')
     .trim()
     .split('')
-    .map((char) => map[char] || char)
+    .map((ch) => map[ch] || ch)
     .join('');
 }
 
-function PredprinPage({ children, ...props }) {
+function PredprinPage() {
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(0);
-
   const location = useLocation();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [location.pathname]); // скролл вверх при изменении маршрута
 
   const [supports, setSupports] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [hoveredId, setHoveredId] = useState(null);
+
+  // целевой порядок
+  const ALLOWED_IDS = [35, 34, 33, 32, 30, 29, 28, 27, 26, 23, 21, 44, 45];
+  const orderIndex = new Map(ALLOWED_IDS.map((id, i) => [id, i]));
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${serverConfig}/supports`);
-        const supportsData = await response.json();
+        const response = await fetch(`${serverConfig}/services`);
+        const data = await response.json();
+        const raw = Array.isArray(data) ? data : [];
 
-        // ✅ Фильтруем только
-        const filteredSupports = supportsData.filter((support) =>
-          support.tags?.some((tag) => tag.title === 'Предпринимателю')
-        );
+        const filteredSorted = raw
+          .filter((s) => ALLOWED_IDS.includes(s.id))
+          .sort((a, b) => orderIndex.get(a.id) - orderIndex.get(b.id));
 
-        setSupports(filteredSupports);
+        setSupports(filteredSorted);
       } catch (err) {
         console.error('Ошибка загрузки данных:', err);
-        setError('Ошибка загрузки данных');
       } finally {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
-  // const handlePageClick = (data) => {
-  //   setCurrentPage(data.selected);
-  // };
-  // console.log(123, news);
-  // const offset = currentPage * itemsPerPage;
-  // const currentNews = news.slice(offset, offset + itemsPerPage);
-
-  // const handleNewsClick = (id) => {
-  //   navigate(`/news/${id}`); // Перенаправляем на страницу с деталями новости
-  // };
   return (
     <>
       <div className={classes.containerTop}>
-        {/* <img src="/images/samozan1.png" className={classes.img1} /> */}
         <CenterBlock>
           <WidthBlock>
             <div className={classes.container}>
-              {' '}
               <div className={classes.containerText}>
-                <span>ГРАНТОВАЯ ПОДДЕРЖКА ДЛЯ ВАШЕГО БИЗНЕСА</span>
-                {/* <span>Построить бизнес просто — стань самозанятым</span> */}
+                <span>МЕРЫ ПОДДЕРЖКИ ДЛЯ ВАШЕГО БИЗНЕСА</span>
                 <button onClick={() => navigate('/contacts#bid')}>
                   Записаться на консультацию
                 </button>
               </div>
-              <img src="/images/pred2.png" />
+              <img src="/images/pred2.png" alt="" />
             </div>
           </WidthBlock>
         </CenterBlock>
@@ -164,30 +150,69 @@ function PredprinPage({ children, ...props }) {
           <div className={classes.title}>
             <span>Меры поддержки</span>
           </div>
-          <div className={classes.container1}>
-            {supports.map((support) => (
+
+          {/* карточки как на других страницах (ракета + оверлей) */}
+          <div className={classes.srvGrid}>
+            {!loading && supports.length === 0 && (
+              <div className={classes.empty}>Пока нет мер поддержки.</div>
+            )}
+
+            {supports.map((el) => (
               <div
-                className={classes.containerGroupContentCard}
-                key={support.id}
+                key={el.id}
+                className={classes.srvCard}
+                onMouseEnter={() => setHoveredId(el.id)}
+                onMouseLeave={() => setHoveredId(null)}
               >
-                <img src={`${uploadsConfig}${support.img[0]}`} />
-                <span>{support.title}</span>
-                <span
-                  onClick={() =>
-                    navigate(
-                      `/supports/${encodeURIComponent(slugify(support.title))}`
-                    )
-                  }
-                >
-                  Узнать больше
-                </span>
+                {el?.img?.[0] && (
+                  <img
+                    src={`${uploadsConfig}${el.img[0]}`}
+                    className={classes.srvCardImg}
+                    alt={el.title}
+                  />
+                )}
+
+                <img
+                  src="/images/roket.png"
+                  alt=""
+                  className={classes.srvCardBgRocket}
+                />
+                <img
+                  src="/images/orangeSer.png"
+                  alt=""
+                  className={classes.srvCardBgOrange}
+                />
+
+                <div className={classes.srvCardBottom}>
+                  <span className={classes.srvTitle}>{el.title}</span>
+                  <span
+                    className={classes.srvMoreLink}
+                    onClick={() =>
+                      navigate(
+                        `/service/${encodeURIComponent(slugify(el.title))}`
+                      )
+                    }
+                  >
+                    <img
+                      src={
+                        hoveredId === el.id
+                          ? '/images/Group16.svg'
+                          : '/images/Group 15.svg'
+                      }
+                      alt="Подробнее"
+                      className={classes.srvMoreIcon}
+                    />
+                  </span>
+                </div>
               </div>
             ))}
           </div>
+
           <Bid />
         </WidthBlock>
       </CenterBlock>
     </>
   );
 }
+
 export default PredprinPage;

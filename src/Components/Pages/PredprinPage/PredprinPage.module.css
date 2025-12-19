@@ -203,3 +203,138 @@
     }
   }
   
+
+  /* === Сетка карточек услуг === */
+.srvGrid {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+  margin-top: -40px;
+}
+
+/* Карточка */
+.srvCard {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 32%;
+  height: 251px;
+  border-radius: 20px;
+  background-color: #fefefe;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+/* 1-я картинка (иконка услуги) */
+.srvCardImg {
+  display: flex;
+  width: 100px;
+  height: 104px;
+  margin: 20px;
+  z-index: 1;
+  object-fit: cover;
+}
+
+/* 2-я (ракета справа) */
+.srvCardBgRocket {
+  display: flex;
+  position: absolute;
+  right: 0;
+  height: 97%;
+  top: 0;
+}
+
+/* 3-я (оранжевый overlay слева) */
+.srvCardBgOrange {
+  display: flex;
+  position: absolute;
+  width: 290px;
+  height: 110%;
+  left: -300px;
+  top: 0;
+  transition: all ease-out 0.4s;
+}
+
+.srvCard:hover .srvCardBgOrange { left: 0px; }
+.srvCard:hover .srvCardBottom span { color: #fff; }
+
+/* Низ карточки */
+.srvCardBottom {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  justify-content: space-between;
+}
+
+/* Заголовок */
+.srvTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #562211;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 96px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Кнопка Подробнее (контейнер) */
+.srvMoreLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-right: 35px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+/* Иконка Подробнее */
+.srvMoreIcon {
+  width: 66px !important;
+  height: 64px !important;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+/* Мобилка */
+@media (max-width: 768px) {
+  .srvGrid {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 39px;
+    padding: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    justify-content: initial;
+  }
+
+  .srvCard {
+    width: 100%;
+    height: 201px;
+    border-radius: 20px;
+    background-color: #fefefe;
+    overflow: hidden;
+    transition: all ease-out 0.2s;
+  }
+
+  .srvCardImg {
+    width: 50px;
+    height: 59px;
+    margin: 20px;
+  }
+
+  .srvCardBgRocket { right: 0; height: 97%; }
+  .srvCardBgOrange { width: 270px; height: 110%; left: -280px; }
+  .srvCard:hover .srvCardBgOrange { left: 0px; }
+
+  .srvTitle { font-size: 14px; height: 96px; }
+}

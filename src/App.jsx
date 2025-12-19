@@ -52,7 +52,7 @@ function App() {
           path="center_molod_innovac_texnologyi"
           element={<CentrTehPage />}
         />
-            <Route path="samozanyatyi" element={<SamozanPage />} />
+            <Route path="supportSVO" element={<SamozanPage />} />
             <Route path="individualnyi_predprinimatel" element={<PlanBusPage />} />
             <Route path="predprinimatel" element={<PredprinPage />} />
             <Route path="lyogkaya_promyshlennost" element={<SocPredPage />} />
