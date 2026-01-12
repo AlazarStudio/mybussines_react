@@ -50,7 +50,7 @@ function Footer({ children, ...props }) {
                     Положение об оказании платных услуг
                   </a>
                   <a
-                    href="/Prikaz_10-P.pdf"
+                    href="/prikaz_10-P.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
