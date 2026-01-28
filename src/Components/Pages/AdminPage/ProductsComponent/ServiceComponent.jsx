@@ -18,14 +18,34 @@ import { handleSave, handleSaveWithImages } from '../JS/fileUploadUtils';
 import uploadsConfig from '../../../../uploadsConfig';
 import RichTextInput from '../Auth/RichTextInput';
 import MyRichTextInput from './MyRichTextInput';
+import { stripHTML } from './NewsComponent';
 
 // 📌 Список сервисов
 export const ServiceList = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" label="ID" />
-      <TextField source="title" label="Название" />
-      <TextField source="description" label="Описание" />
+      <TextField source="title" label="Название" sx={{
+        display: '-webkit-box',
+        WebkitLineClamp: 4,
+        WebkitBoxOrient: 'vertical',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'normal'
+      }} />
+      {/* <TextField source="description" label="Описание" /> */}
+      <FunctionField
+        label='Текст'
+        render={record => stripHTML(record.description)}
+        style={{
+          display: '-webkit-box',
+          WebkitLineClamp: 4,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'normal'
+        }}
+      />
       <TextField source="form.title" label="Форма" />
 
       {/* ✅ Исправленный рендеринг центров */}
@@ -36,7 +56,37 @@ export const ServiceList = (props) => (
         }
       />
 
-      <TextField source="img" label="Изображения" />
+      {/* <TextField source="img" label="Изображения" /> */}
+      <FunctionField
+        label="Картинка"
+        render={(record) => {
+          const images = Array.isArray(record.img)
+            ? record.img
+            : record.img
+              ? [record.img]
+              : [];
+          if (!images.length) return null;
+          const image = images[0];
+          const src = image.includes('http')
+            ? image
+            : `${uploadsConfig}${image}`;
+          return (
+            <ImageField
+              source="src"
+              record={{ src }}
+              title={record.title}
+              sx={{
+                '& img': {
+                  width: "100px !important",
+                  height: "100px !important",
+                  objectFit: 'cover !important',
+                  borderRadius: '8px',
+                },
+              }}
+            />
+          );
+        }}
+      />
       <EditButton />
       <DeleteButton />
     </Datagrid>
@@ -89,10 +139,10 @@ export const ServiceEdit = (props) => (
         source="centerIds"
         reference="centers"
         label="Центры"
-        // format={(value) =>
-        //   Array.isArray(value) ? value.map((v) => v.centerId || v.id) : []
-        // }
-        // parse={(value) => value.map((id) => ({ centerId: id }))}
+      // format={(value) =>
+      //   Array.isArray(value) ? value.map((v) => v.centerId || v.id) : []
+      // }
+      // parse={(value) => value.map((id) => ({ centerId: id }))}
       >
         <SelectArrayInput optionText="title" />
       </ReferenceArrayInput>
@@ -126,25 +176,25 @@ export const ServiceEdit = (props) => (
         format={(value) =>
           Array.isArray(value)
             ? value.map((image) => ({
-                src:
-                  typeof image === 'string' && image.startsWith('http')
-                    ? image
-                    : `${uploadsConfig}${image}`,
-                title: image,
-              }))
+              src:
+                typeof image === 'string' && image.startsWith('http')
+                  ? image
+                  : `${uploadsConfig}${image}`,
+              title: image,
+            }))
             : []
         }
         parse={(value) =>
           Array.isArray(value)
             ? value.map((file) => {
-                if (file.rawFile) {
-                  return file.rawFile; // Если это новый файл
-                }
-                if (typeof file.src === 'string') {
-                  return file.src.replace(`${uploadsConfig}`, ''); // Старое изображение
-                }
-                return file;
-              })
+              if (file.rawFile) {
+                return file.rawFile; // Если это новый файл
+              }
+              if (typeof file.src === 'string') {
+                return file.src.replace(`${uploadsConfig}`, ''); // Старое изображение
+              }
+              return file;
+            })
             : []
         }
       >

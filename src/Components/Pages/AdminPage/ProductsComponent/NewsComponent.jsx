@@ -9,6 +9,7 @@ import {
   ImageField,
   DateInput,
   DateField,
+  FunctionField,
 } from 'react-admin';
 import { Create, SimpleForm, TextInput } from 'react-admin';
 import { Edit } from 'react-admin';
@@ -17,6 +18,22 @@ import { handleSave, handleSaveWithImages } from '../JS/fileUploadUtils';
 import uploadsConfig from '../../../../uploadsConfig';
 import RichTextInput from '../Auth/RichTextInput';
 import MyRichTextInput from './MyRichTextInput';
+
+export const stripHTML = html => {
+	const tmp = document.createElement('DIV')
+	tmp.innerHTML = html
+	return tmp.textContent || tmp.innerText || ''
+}
+
+const formatDate = dateString => {
+	const options = {
+		day: '2-digit',
+		month: '2-digit',
+		year: 'numeric'
+	}
+
+	return new Date(dateString).toLocaleString('ru-RU', options)
+}
 
 // Список всех категорий
 export const NewsList = (props) => (
@@ -28,10 +45,51 @@ export const NewsList = (props) => (
       <TextField source="id" label="ID" />
       <TextField source="title" label="Название" />
       <DateField source="date" label="Дата" />
-      <TextField source="description" label="Описание" />
-      <TextField source="img" label="Картинка" />
-      <EditButton />
-      <DeleteButton />
+      {/* <TextField source="description" label="Описание" /> */}
+      <FunctionField
+				label='Текст'
+				render={record => stripHTML(record.description)}
+				style={{
+					display: '-webkit-box',
+					WebkitLineClamp: 4,
+					WebkitBoxOrient: 'vertical',
+					overflow: 'hidden',
+					textOverflow: 'ellipsis',
+					whiteSpace: 'normal'
+				}}
+			/>
+      <FunctionField
+        label="Картинка"
+        render={(record) => {
+          const images = Array.isArray(record.img)
+            ? record.img
+            : record.img
+              ? [record.img]
+              : [];
+          if (!images.length) return null;
+          const image = images[0];
+          const src = image.includes('http')
+            ? image
+            : `${uploadsConfig}${image}`;
+          return (
+            <ImageField
+              source="src"
+              record={{ src }}
+              title={record.title}
+              sx={{
+                '& img': {
+                  width: "100px !important",
+                  height: "100px !important",
+                  objectFit: 'cover !important',
+                  borderRadius: '8px',
+                },
+              }}
+            />
+          );
+        }}
+      />
+      <EditButton label={null} />
+      <DeleteButton label={null}/>
     </Datagrid>
   </List>
 );

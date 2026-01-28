@@ -46,7 +46,7 @@ function Container4({ children, ...props }) {
               </div>
             </div>
           </div>
-          <div className={classes.container3}>
+          {/* <div className={classes.container3}>
             <a href="https://vk.com/wall-184048555_22481" target='_blank'>
               <img src="../images/banner22.jpg" />
             </a>
@@ -58,10 +58,10 @@ function Container4({ children, ...props }) {
             <a href="https://бизнесмарафон.рф/ " target='_blank'>
               <img src="../images/creativ111.jpg" />
             </a>
-          </div>
-          <a href="https://xn--80aaapecta3abbflycnd5byo.xn--p1ai/?utm_source=kchr&utm_medium=web&utm_campaign=regions" target='_blank'>
+          </div> */}
+          {/* <a href="https://xn--80aaapecta3abbflycnd5byo.xn--p1ai/?utm_source=kchr&utm_medium=web&utm_campaign=regions" target='_blank'>
             <img src="../images/banner3.jpg" className={classes.banner3} />
-          </a>
+          </a> */}
         </div>
       </div>
     </>

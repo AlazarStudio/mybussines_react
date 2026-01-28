@@ -18,6 +18,7 @@ import { Create, SimpleForm, TextInput, Edit } from 'react-admin';
 import { handleSave, handleSaveWithImages } from '../JS/fileUploadUtils';
 import uploadsConfig from '../../../../uploadsConfig';
 import RichTextInput from '../Auth/RichTextInput';
+import { stripHTML } from './NewsComponent';
 
 // 📌 Список поддержек
 export const SupportList = (props) => (
@@ -25,7 +26,19 @@ export const SupportList = (props) => (
     <Datagrid rowClick="edit">
       <TextField source="id" label="ID" />
       <TextField source="title" label="Название" />
-      <TextField source="description" label="Описание" />
+      {/* <TextField source="description" label="Описание" /> */}
+      <FunctionField
+        label='Текст'
+        render={record => stripHTML(record.description)}
+        style={{
+          display: '-webkit-box',
+          WebkitLineClamp: 4,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'normal'
+        }}
+      />
       <TextField source="typeSupport.title" label="Тип" />
       <TextField source="popular" label="Популярное" />
       {/* ✅ Отображение тегов через запятую */}
@@ -38,7 +51,37 @@ export const SupportList = (props) => (
       />
 
       {/* ✅ Отображение первого изображения */}
-      <TextField source="img" label="Изображение" />
+      {/* <TextField source="img" label="Изображение" /> */}
+      <FunctionField
+        label="Картинка"
+        render={(record) => {
+          const images = Array.isArray(record.img)
+            ? record.img
+            : record.img
+              ? [record.img]
+              : [];
+          if (!images.length) return null;
+          const image = images[0];
+          const src = image.includes('http')
+            ? image
+            : `${uploadsConfig}${image}`;
+          return (
+            <ImageField
+              source="src"
+              record={{ src }}
+              title={record.title}
+              sx={{
+                '& img': {
+                  width: "100px !important",
+                  height: "100px !important",
+                  objectFit: 'cover !important',
+                  borderRadius: '8px',
+                },
+              }}
+            />
+          );
+        }}
+      />
 
       <EditButton />
       <DeleteButton />
@@ -128,11 +171,11 @@ export const SupportEdit = (props) => (
         format={(value) =>
           value && value.length
             ? value.map((image) => ({
-                src: image.includes('http')
-                  ? image
-                  : `${uploadsConfig}${image}`,
-                title: image,
-              }))
+              src: image.includes('http')
+                ? image
+                : `${uploadsConfig}${image}`,
+              title: image,
+            }))
             : []
         }
         parse={(value) =>

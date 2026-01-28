@@ -106,6 +106,7 @@ function OneNewsPage() {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [activeImage, setActiveImage] = useState(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -129,15 +130,127 @@ function OneNewsPage() {
     fetchData();
   }, []);
 
-  function linkify(text) {
-    const urlRegex = /((https?:\/\/[^\s<>"]+))/g;
-    return text.replace(urlRegex, (url) => {
-      const safeUrl = DOMPurify.sanitize(url); // защита от XSS
-      return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeUrl}</a>`;
+  useEffect(() => {
+    if (!activeImage) return;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setActiveImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeImage]);
+
+  const imageUrlRegex = /\.(png|jpe?g|webp|gif|svg)(\?.*)?$/i;
+  const urlRegex = /(https?:\/\/[^\s<>"']+)/g;
+
+  const isImageUrl = (url) => imageUrlRegex.test(url);
+
+  const splitTextByUrls = (text) => {
+    const parts = [];
+    let lastIndex = 0;
+    for (const match of text.matchAll(urlRegex)) {
+      if (match.index > lastIndex) {
+        parts.push({ type: 'text', value: text.slice(lastIndex, match.index) });
+      }
+      parts.push({ type: 'url', value: match[0] });
+      lastIndex = match.index + match[0].length;
+    }
+    if (lastIndex < text.length) {
+      parts.push({ type: 'text', value: text.slice(lastIndex) });
+    }
+    return parts;
+  };
+
+  const normalizeUrlToken = (token) => {
+    const trimmed = token.replace(/[),.;!?]+$/g, '');
+    const trailing = token.slice(trimmed.length);
+    return { url: trimmed, trailing };
+  };
+
+  const prepareArticleHtml = (rawHtml) => {
+    if (!rawHtml) return '';
+    if (typeof window === 'undefined' || !window.DOMParser) {
+      return DOMPurify.sanitize(rawHtml);
+    }
+
+    const sanitized = DOMPurify.sanitize(rawHtml);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(sanitized, 'text/html');
+    const showText =
+      typeof NodeFilter !== 'undefined' ? NodeFilter.SHOW_TEXT : 4;
+    const walker = doc.createTreeWalker(doc.body, showText);
+    const textNodes = [];
+
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const parentTag = node.parentElement?.tagName?.toLowerCase();
+      if (!node.nodeValue || !node.nodeValue.trim()) continue;
+      if (parentTag === 'a' || parentTag === 'script' || parentTag === 'style') {
+        continue;
+      }
+      textNodes.push(node);
+    }
+
+    textNodes.forEach((node) => {
+      const parts = splitTextByUrls(node.nodeValue);
+      if (parts.length === 1 && parts[0].type === 'text') return;
+
+      const fragment = doc.createDocumentFragment();
+
+      parts.forEach((part) => {
+        if (part.type === 'text') {
+          fragment.appendChild(doc.createTextNode(part.value));
+          return;
+        }
+
+        // const { url, trailing } = normalizeUrlToken(part.value);
+        // if (!url) {
+        //   fragment.appendChild(doc.createTextNode(part.value));
+        //   return;
+        // }
+
+        if (isImageUrl(url)) {
+          const link = doc.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+
+          const img = doc.createElement('img');
+          img.src = url;
+          img.alt = '';
+          img.loading = 'lazy';
+          img.decoding = 'async';
+
+          link.appendChild(img);
+          fragment.appendChild(link);
+        } else {
+          const link = doc.createElement('a');
+          link.href = url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = url;
+          fragment.appendChild(link);
+        }
+
+        if (trailing) {
+          fragment.appendChild(doc.createTextNode(trailing));
+        }
+      });
+
+      node.parentNode.replaceChild(fragment, node);
     });
-  }
+
+    return doc.body.innerHTML;
+  };
 
   const currentNews = news.find((item) => slugify(item.title) === decodedTitle);
+  const images = Array.isArray(currentNews?.img) ? currentNews.img : [];
+  const heroImage = images[0];
+  const galleryImages = images.slice(1);
+  const formattedDate = currentNews?.date
+    ? new Date(currentNews.date).toLocaleDateString('ru-RU')
+    : '';
 
   if (!currentNews) {
     return (
@@ -152,6 +265,32 @@ function OneNewsPage() {
     );
   }
 
+  const openModal = (src, alt = '') => {
+    if (!src) return;
+    setActiveImage({ src, alt });
+  };
+
+  const closeModal = () => setActiveImage(null);
+
+  const handleModalOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  };
+
+  const handleArticleClick = (event) => {
+    const target = event.target;
+    if (target?.tagName !== 'IMG') return;
+    event.preventDefault();
+    const src = target.getAttribute('src');
+    if (src) {
+      openModal(src, target.getAttribute('alt') || '');
+    }
+  };
+
+  console.log(currentNews);
+  
+
   return (
     <CenterBlock>
       <WidthBlock>
@@ -160,26 +299,88 @@ function OneNewsPage() {
             <div className={classes.containerNav}>
               <Link to="/">Главная / </Link>
               <Link to="/news">Новости / </Link>
-              <span>{currentNews.title}</span>
+              <span className={classes.breadcrumbTitle}>{currentNews.title}</span>
             </div>
 
             <div className={classes.containerNews}>
-              <span>{currentNews.title}</span>
+              <h1 className={classes.title}>{currentNews.title}</h1>
+              {formattedDate && (
+                <p className={classes.date}>{formattedDate}</p>
+              )}
+
+              {heroImage && (
+                <div className={classes.hero}>
+                  <img
+                    className={`${classes.heroImage} ${classes.clickableImage}`}
+                    src={`${uploadsConfig}${heroImage}`}
+                    alt={currentNews.title}
+                    onClick={() =>
+                      openModal(
+                        `${uploadsConfig}${heroImage}`,
+                        currentNews.title
+                      )
+                    }
+                  />
+                </div>
+              )}
+
               <div
                 className={classes.articleText}
+                onClick={handleArticleClick}
                 dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(linkify(currentNews.description)),
+                  __html: currentNews.description,
                 }}
               ></div>
 
-              <img
-                src={`${uploadsConfig}${currentNews.img[0]}`}
-                alt={currentNews.title}
-              />
+              {galleryImages.length > 0 && (
+                <div className={classes.gallery}>
+                  {galleryImages.map((image, index) => (
+                    <div
+                      className={classes.galleryItem}
+                      key={`${image}-${index}`}
+                    >
+                      <img
+                        className={classes.clickableImage}
+                        src={`${uploadsConfig}${image}`}
+                        alt={`${currentNews.title} ${index + 2}`}
+                        onClick={() =>
+                          openModal(
+                            `${uploadsConfig}${image}`,
+                            `${currentNews.title} ${index + 2}`
+                          )
+                        }
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
       </WidthBlock>
+      {activeImage && (
+        <div
+          className={classes.modalOverlay}
+          onClick={handleModalOverlayClick}
+          role="presentation"
+        >
+          <div className={classes.modalContent}>
+            <button
+              type="button"
+              className={classes.modalClose}
+              onClick={closeModal}
+              aria-label="Закрыть"
+            >
+              &times;
+            </button>
+            <img
+              className={classes.modalImage}
+              src={activeImage.src}
+              alt={activeImage.alt}
+            />
+          </div>
+        </div>
+      )}
     </CenterBlock>
   );
 }

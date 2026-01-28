@@ -3,6 +3,7 @@ import classes from './Container5.module.css';
 import { useNavigate } from 'react-router-dom';
 import serverConfig from '../../../../serverConfig';
 import uploadsConfig from '../../../../uploadsConfig';
+import { slugify } from '../../../Pages/NewsPage/NewsPage';
 
 function Container5({ children, ...props }) {
   const navigate = useNavigate();
@@ -145,8 +146,8 @@ function Container5({ children, ...props }) {
                 onClick={() =>
                   navigate(
                     `/news/${encodeURIComponent(
-                      transliterate(
-                        el.title.replaceAll('«', '').replaceAll('»', '')
+                      slugify(
+                        el.title
                       )
                     )}`
                   )

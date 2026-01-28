@@ -44,7 +44,7 @@ const MyRichTextInput = ({ source, label }) => {
   };
 
   return (
-    <div style={{ marginBottom: '1em' }}>
+    <div style={{ marginBottom: '1em', width: "100%" }}>
       <label style={{ display: 'block', marginBottom: 8 }}>{label}</label>
       <ReactQuill
         theme="snow"

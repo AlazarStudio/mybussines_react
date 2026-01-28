@@ -70,7 +70,7 @@ const MyCustomButton = () => {
       onClick={() => navigate('/')}
       variant="contained"
       color="primary"
-      style={{ position: 'absolute', bottom: 40, left: 25, zIndex: 1000 }}
+      style={{ position: 'fixed', bottom: 40, left: 25, zIndex: 1000 }}
     >
       Вернуться на сайт
     </Button>
@@ -89,7 +89,7 @@ const AdminPage = () => (
       i18nProvider={i18nProvider}
       authProvider={authProvider}
       loginPage={<LoginPage />}
-      theme={defaultTheme}
+      // theme={defaultTheme}
     >
       <Resource
         name="forms"
