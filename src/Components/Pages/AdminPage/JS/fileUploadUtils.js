@@ -109,3 +109,79 @@ export const handleSaveWithImages = async (values) => {
 
   return values;
 };
+
+export const handleSaveSocialPractice = async (values) => {
+  if (values.photo && values.photo.length > 0) {
+    const uploaded = await uploadFiles(values.photo);
+    values.photo = uploaded;
+  } else {
+    values.photo = [];
+  }
+
+  const socialLinks = [];
+  for (let i = 1; i <= 3; i++) {
+    const type = values[`social${i}Type`] || 'telegram';
+    const link = values[`social${i}Link`] || '';
+    let qrImage = '';
+    const qrInput = values[`social${i}Qr`];
+    if (qrInput && Array.isArray(qrInput) && qrInput[0]) {
+      if (qrInput[0].rawFile) {
+        const uploaded = await uploadFile(qrInput[0].rawFile);
+        qrImage = uploaded && uploaded[0] ? uploaded[0] : '';
+      } else {
+        qrImage = qrInput[0].src?.replace(/^https?:\/\/[^/]+/, '') || '';
+      }
+    }
+    socialLinks.push({ type, link, qrImage });
+  }
+  values.socialLinks = socialLinks;
+
+  for (let i = 1; i <= 3; i++) {
+    delete values[`social${i}Type`];
+    delete values[`social${i}Link`];
+    delete values[`social${i}Qr`];
+  }
+
+  return values;
+};
+
+export const handleSaveWithImagesSocialPractice = async (values) => {
+  const existingPhoto = Array.isArray(values.photo)
+    ? values.photo.filter((p) => typeof p === 'string' && p)
+    : [];
+  const newPhotoFiles = values.photosRaw || [];
+  let updatedPhotos = existingPhoto;
+  if (newPhotoFiles.length > 0) {
+    const uploaded = await uploadFiles(newPhotoFiles);
+    updatedPhotos = uploaded;
+  }
+  values.photo = updatedPhotos.length ? updatedPhotos : [];
+  delete values.photosRaw;
+
+  const existingLinks = values.socialLinks || [];
+  const socialLinks = [];
+  for (let i = 1; i <= 3; i++) {
+    const type = values[`social${i}Type`] || (existingLinks[i - 1]?.type || 'telegram');
+    const link = values[`social${i}Link`] ?? (existingLinks[i - 1]?.link || '');
+    let qrImage = existingLinks[i - 1]?.qrImage || '';
+    const qrInput = values[`social${i}Qr`];
+    if (qrInput && Array.isArray(qrInput) && qrInput[0]) {
+      if (qrInput[0].rawFile) {
+        const uploaded = await uploadFile(qrInput[0].rawFile);
+        qrImage = uploaded && uploaded[0] ? uploaded[0] : '';
+      } else if (qrInput[0].src && !qrInput[0].src.startsWith('data:')) {
+        qrImage = qrInput[0].src.replace(/^https?:\/\/[^/]+/, '') || qrInput[0].src;
+      }
+    }
+    socialLinks.push({ type, link, qrImage });
+  }
+  values.socialLinks = socialLinks;
+
+  for (let i = 1; i <= 3; i++) {
+    delete values[`social${i}Type`];
+    delete values[`social${i}Link`];
+    delete values[`social${i}Qr`];
+  }
+
+  return values;
+};

@@ -8,6 +8,7 @@ import Container5 from '../../ui/CentrInnovPage/Container5/Container5';
 import Container6 from '../../ui/CentrInnovPage/Container6/Container6';
 import Bid from '../../ui/Bid/Bid';
 import Container7 from '../../ui/CentrInnovPage/Container7/Container7';
+import Container8 from '../../ui/CentrInnovPage/Container8/Container8';
 import { useLocation } from 'react-router-dom';
 
 function CentrInnovPage({ children, ...props }) {
@@ -23,6 +24,7 @@ function CentrInnovPage({ children, ...props }) {
       {/* <Container2 /> */}
       {/* <Container3 /> */}
       <Container4 />
+      <Container8 />
       <Container5 />
       <Container7 />
       <Container6 />

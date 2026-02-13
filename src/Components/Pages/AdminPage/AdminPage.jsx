@@ -59,6 +59,11 @@ import {
   BidEdit,
   BidList,
 } from './ProductsComponent/BidComponent.jsx';
+import {
+  SocialPracticeCreate,
+  SocialPracticeEdit,
+  SocialPracticeList,
+} from './ProductsComponent/SocialPracticeComponent.jsx';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -153,6 +158,13 @@ const AdminPage = () => (
         list={BidList}
         create={BidCreate}
         edit={BidEdit}
+      />
+      <Resource
+        name="socialPractices"
+        options={{ label: 'Лучшие практики ЦИСС' }}
+        list={SocialPracticeList}
+        create={SocialPracticeCreate}
+        edit={SocialPracticeEdit}
       />
     </Admin>
   </>
