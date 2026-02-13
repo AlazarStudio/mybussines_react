@@ -25,6 +25,8 @@ const SOCIAL_TYPE_CHOICES = [
   { id: 'telegram', name: 'Telegram' },
   { id: 'instagram', name: 'Instagram' },
   { id: 'whatsapp', name: 'WhatsApp' },
+  { id: 'vk', name: 'ВКонтакте' },
+  { id: 'max', name: 'Max' },
 ];
 
 export const SocialPracticeList = (props) => (
@@ -163,10 +165,34 @@ const SocialPracticeEditForm = () => {
           ...record,
           social1Type: record.socialLinks[0]?.type || 'telegram',
           social1Link: record.socialLinks[0]?.link || '',
+          social1Qr: record.socialLinks[0]?.qrImage
+            ? [
+                {
+                  src: `${uploadsConfig}${record.socialLinks[0].qrImage}`,
+                  title: 'QR',
+                },
+              ]
+            : undefined,
           social2Type: record.socialLinks[1]?.type || 'telegram',
           social2Link: record.socialLinks[1]?.link || '',
+          social2Qr: record.socialLinks[1]?.qrImage
+            ? [
+                {
+                  src: `${uploadsConfig}${record.socialLinks[1].qrImage}`,
+                  title: 'QR',
+                },
+              ]
+            : undefined,
           social3Type: record.socialLinks[2]?.type || 'telegram',
           social3Link: record.socialLinks[2]?.link || '',
+          social3Qr: record.socialLinks[2]?.qrImage
+            ? [
+                {
+                  src: `${uploadsConfig}${record.socialLinks[2].qrImage}`,
+                  title: 'QR',
+                },
+              ]
+            : undefined,
         }
       : undefined;
 

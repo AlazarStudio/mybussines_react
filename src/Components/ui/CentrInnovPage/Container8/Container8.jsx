@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import classes from './Container8.module.css';
 
@@ -9,9 +10,11 @@ import serverConfig from '../../../../serverConfig';
 import uploadsConfig from '../../../../uploadsConfig';
 
 const SOCIAL_ICONS = {
-  telegram: '/images/tgNew.svg',
-  instagram: '/images/tgNew.svg',
-  whatsapp: '/images/tgNew.svg',
+  telegram: '/images/tg.svg',
+  instagram: '/images/instagram.svg',
+  whatsapp: '/images/wa.svg',
+  vk: '/images/vk.svg',
+  max: '/images/max.svg'
 };
 
 function Container8() {
@@ -66,6 +69,8 @@ function Container8() {
         </div>
         <div className={classes.wrapper}>
           <Swiper
+            modules={[Pagination, Autoplay]}
+            className={classes.swiper}
             spaceBetween={24}
             slidesPerView={1.2}
             onSwiper={(swiper) => {
@@ -76,7 +81,16 @@ function Container8() {
               768: { slidesPerView: 2 },
               1024: { slidesPerView: 2 },
             }}
-            className={classes.swiper}
+            loop={true}
+            autoplay={{
+              delay: 6000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+              renderBullet: (index, className) =>
+                `<span class="${className}" style="width:10px;height:10px;margin:0 10px;background:#ed5338;border-radius:50%;display:inline-block;"></span>`,
+            }}
           >
             {practices.map((item) => (
               <SwiperSlide key={item.id} className={classes.slide}>
@@ -96,7 +110,7 @@ function Container8() {
                     <p className={classes.cardRole}>{item.role}</p>
                     <p className={classes.cardDescription}>{item.description}</p>
                     <div className={classes.phoneBlock}>
-                      <span className={classes.phoneIcon}>📞</span>
+                      <span className={classes.phoneIcon}><img src="/images/cont2.png" alt="" /></span>
                       <a href={`tel:${item.phone?.replace(/\s/g, '')}`} className={classes.phone}>
                         {item.phone}
                       </a>
@@ -133,7 +147,7 @@ function Container8() {
               </SwiperSlide>
             ))}
           </Swiper>
-          <button
+          {/* <button
             type="button"
             className={classes.navButton}
             aria-label="Следующая"
@@ -148,7 +162,7 @@ function Container8() {
             onClick={() => swiperRef.current?.slidePrev()}
           >
             ←
-          </button>
+          </button> */}
         </div>
       </WidthBlock>
     </CenterBlock>

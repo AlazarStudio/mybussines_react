@@ -124,12 +124,16 @@ export const handleSaveSocialPractice = async (values) => {
     const link = values[`social${i}Link`] || '';
     let qrImage = '';
     const qrInput = values[`social${i}Qr`];
-    if (qrInput && Array.isArray(qrInput) && qrInput[0]) {
-      if (qrInput[0].rawFile) {
-        const uploaded = await uploadFile(qrInput[0].rawFile);
-        qrImage = uploaded && uploaded[0] ? uploaded[0] : '';
-      } else {
-        qrImage = qrInput[0].src?.replace(/^https?:\/\/[^/]+/, '') || '';
+    const qrFile = Array.isArray(qrInput) ? qrInput[0] : qrInput;
+    if (qrFile) {
+      const fileToUpload = qrFile?.rawFile || qrFile;
+      if (fileToUpload instanceof File) {
+        const uploaded = await uploadFile(fileToUpload);
+        qrImage = uploaded?.[0] ?? '';
+      } else if (typeof qrFile === 'string') {
+        qrImage = qrFile;
+      } else if (qrFile.src && !qrFile.src.startsWith('data:')) {
+        qrImage = qrFile.src.replace(/^https?:\/\/[^/]+/, '') || qrFile.src;
       }
     }
     socialLinks.push({ type, link, qrImage });
@@ -165,12 +169,16 @@ export const handleSaveWithImagesSocialPractice = async (values) => {
     const link = values[`social${i}Link`] ?? (existingLinks[i - 1]?.link || '');
     let qrImage = existingLinks[i - 1]?.qrImage || '';
     const qrInput = values[`social${i}Qr`];
-    if (qrInput && Array.isArray(qrInput) && qrInput[0]) {
-      if (qrInput[0].rawFile) {
-        const uploaded = await uploadFile(qrInput[0].rawFile);
-        qrImage = uploaded && uploaded[0] ? uploaded[0] : '';
-      } else if (qrInput[0].src && !qrInput[0].src.startsWith('data:')) {
-        qrImage = qrInput[0].src.replace(/^https?:\/\/[^/]+/, '') || qrInput[0].src;
+    const qrFile = Array.isArray(qrInput) ? qrInput[0] : qrInput;
+    if (qrFile) {
+      const fileToUpload = qrFile?.rawFile || qrFile;
+      if (fileToUpload instanceof File) {
+        const uploaded = await uploadFile(fileToUpload);
+        qrImage = uploaded?.[0] ?? '';
+      } else if (typeof qrFile === 'string') {
+        qrImage = qrFile;
+      } else if (qrFile.src && !qrFile.src.startsWith('data:')) {
+        qrImage = qrFile.src.replace(/^https?:\/\/[^/]+/, '') || qrFile.src;
       }
     }
     socialLinks.push({ type, link, qrImage });
