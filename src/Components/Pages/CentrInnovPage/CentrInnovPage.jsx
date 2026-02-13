@@ -23,8 +23,8 @@ function CentrInnovPage({ children, ...props }) {
       <Container1 />
       {/* <Container2 /> */}
       {/* <Container3 /> */}
-      <Container4 />
       <Container8 />
+      <Container4 />
       <Container5 />
       <Container7 />
       <Container6 />

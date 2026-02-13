@@ -86,11 +86,11 @@ function Container8() {
               delay: 6000,
               disableOnInteraction: false,
             }}
-            pagination={{
-              clickable: true,
-              renderBullet: (index, className) =>
-                `<span class="${className}" style="width:10px;height:10px;margin:0 10px;background:#ed5338;border-radius:50%;display:inline-block;"></span>`,
-            }}
+            // pagination={{
+            //   clickable: true,
+            //   renderBullet: (index, className) =>
+            //     `<span class="${className}" style="width:10px;height:10px;margin:0 10px;background:#ed5338;border-radius:50%;display:inline-block;"></span>`,
+            // }}
           >
             {practices.map((item) => (
               <SwiperSlide key={item.id} className={classes.slide}>
@@ -106,7 +106,7 @@ function Container8() {
                     )}
                   </div>
                   <div className={classes.cardContent}>
-                    <h3 className={classes.cardName}>{item.name}</h3>
+                    <p className={classes.cardName}>{item.name}</p>
                     <p className={classes.cardRole}>{item.role}</p>
                     <p className={classes.cardDescription}>{item.description}</p>
                     <div className={classes.phoneBlock}>
@@ -147,13 +147,13 @@ function Container8() {
               </SwiperSlide>
             ))}
           </Swiper>
-          {/* <button
+          <button
             type="button"
             className={classes.navButton}
             aria-label="Следующая"
             onClick={() => swiperRef.current?.slideNext()}
           >
-            →
+            <img src="/images/arrow-nav.svg" alt="" />
           </button>
           <button
             type="button"
@@ -161,8 +161,8 @@ function Container8() {
             aria-label="Предыдущая"
             onClick={() => swiperRef.current?.slidePrev()}
           >
-            ←
-          </button> */}
+            <img src="/images/arrow-nav.svg" alt="" style={{ transform: 'scaleX(-1)' }} />
+          </button>
         </div>
       </WidthBlock>
     </CenterBlock>
