@@ -1,0 +1,72 @@
+.containerBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: -40px;
+  margin-bottom: -40px;
+}
+
+.containerBlockEl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 20px;
+  min-height: 150px;
+  background-color: #fff;
+  padding: 20px 30px;
+}
+
+.containerBlockElLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.linkBtn {
+  all: unset;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ED5338;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.linkBtn:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .containerBlock {
+    padding: 10px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+  }
+
+  .containerBlockEl {
+    min-height: 120px;
+    padding: 15px 20px;
+  }
+
+  .containerBlockElLeft {
+    gap: 15px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .linkBtn {
+    font-size: 16px;
+  }
+}

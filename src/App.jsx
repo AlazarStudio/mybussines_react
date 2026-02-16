@@ -24,6 +24,7 @@ import AdminPage from './Components/Pages/AdminPage/AdminPage';
 import OneServicePage from './Components/Pages/OneServicePage/OneServicePage';
 import MspPage from './Components/Pages/MspPage/MspPage';
 import OneSupportPage from './Components/ui/SupportPage/OneSupportPage/OneSupportPage';
+import TestPage from './Components/Pages/TestPage/TestPage';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
             <Route path="predprinimatel" element={<PredprinPage />} />
             <Route path="lyogkaya_promyshlennost" element={<SocPredPage />} />
             <Route path="supports/:title" element={<OneSupportPage />} />
+        <Route path="test" element={<TestPage />} />
         <Route path="*" element={<Non_Found_Page />} />
       </Route>
       <Route path="supports" element={<SupportPage />} />

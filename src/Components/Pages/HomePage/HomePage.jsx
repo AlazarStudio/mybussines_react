@@ -6,6 +6,7 @@ import Container1 from '../../ui/HomePage/Container1/Container1';
 import Container2 from '../../ui/HomePage/Container2/Container2';
 import Container3 from '../../ui/HomePage/Container3/Container3';
 import Container4 from '../../ui/HomePage/Container4/Container4';
+import ContainerTest from '../../ui/HomePage/ContainerTest/ContainerTest';
 import Container5 from '../../ui/HomePage/Container5/Container5';
 import Container6 from '../../ui/HomePage/Container6/Container6';
 import Container7 from '../../ui/HomePage/Container7/Container7';
@@ -30,6 +31,7 @@ function HomePage({ children, ...props }) {
           <Container3 /> {/* Меры поддержки */}
           <Container10 />  {/* Клуб женщин и самозянатых */}
           <Container4 /> {/* СВО */}
+          <ContainerTest /> {/* Тестирование предпринимательских компетенций */}
           <Container5 /> {/* Последние новости */}
           <Container7 /> {/* Популярные услуги */}
           <Container6 /> {/* Свайпер МСП */}
